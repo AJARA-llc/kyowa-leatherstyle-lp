@@ -7,208 +7,179 @@
 <title>Kawaii Chic Shoulder | Leather Style</title>
 <meta name="description" content="毎日に、わたしらしい色を。15色から選べるKawaii Chic Shoulder。軽くて丈夫、日本のものづくりが息づくバッグ。" />
 <!--
-  Kawaii Chic Shoulder LP — デザインワイヤーフレームに基づく実装イメージ（Shopify Dawn 実装前のプロトタイプ）
-  - モバイルファースト / 全セクション縦スクロール / 一部セクションは横スワイプカルーセル
-  - 画像は全てプレースホルダ（実写真は未確定）。12. FINAL CTA の商品サムネのみ既存カタログ写真を仮使用。
-  - 価格・色数・在庫は仮値。Shopify本実装時に商品データへ差し替え。
+  Kawaii Chic Shoulder LP — 提供されたワイヤーフレーム（12セクション、モバイルファースト、縦スクロール＋横スワイプ）の
+  忠実な再現。Shopify Dawn 実装前のプロトタイプ。
+  - 写真は scripts/gen_images.py でローカル生成した仮画像（実撮影で差し替え前提）。SNS/UGC の3枠のみ
+    ワイヤーフレーム通り空のプレースホルダ。
+  - 価格・色名・色数は仮値。Shopify 実装時に商品データへ差し替え。
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  /*
-    配色方針: ワイヤーフレームはグレースケール基調で、ピンクはCTAボタン2箇所と
-    PICK YOUR MOODのアクティブタブのみに使うアクセントカラー。カラーバリエーションの
-    見せ方も「カード全体を色で塗る」のではなく「ニュートラルな画像プレースホルダ＋
-    下にキャプション」。この2点が前回の実装で外れていたポイント。
-  */
   :root{
-    --ink:#1c1a17; --sub:#87817a; --paper:#ffffff; --panel:#f5f3f1; --line:#e7e3de;
-    --pink:#cf9089; --pink-deep:#b96f68;
-    --radius:2px; --maxw:1080px;
+    --ink:#1f1d1b; --sub:#6f6a64; --paper:#ffffff; --panel:#f4f3f1; --line:#e6e3df;
+    --pink:#cf9089; --pink-deep:#b97a72;
+    --radius:4px; --maxw:640px; --gutter:20px;
     --font:"Inter","Noto Sans JP","Hiragino Kaku Gothic ProN",system-ui,sans-serif;
-    --display:"Inter","Noto Sans JP",system-ui,sans-serif;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   html,body{overflow-x:clip}
   @supports not (overflow-x:clip){ html,body{overflow-x:hidden} }
-  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--paper);line-height:1.85;font-weight:400;
+  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--paper);line-height:1.8;font-weight:400;
     -webkit-font-smoothing:antialiased;letter-spacing:.01em;word-break:auto-phrase;line-break:strict;overflow-wrap:break-word}
   img{max-width:100%;display:block}
   a{color:inherit;text-decoration:none}
-  button{font-family:inherit}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
-  .section{padding:64px 0}
-  .h2{font-family:var(--display);font-size:clamp(1.5rem,5vw,2rem);line-height:1.35;margin:0 0 14px;font-weight:700;letter-spacing:.01em;text-wrap:balance;text-transform:uppercase}
-  .lead{font-size:.98rem;color:var(--sub);max-width:34ch;font-weight:400;white-space:pre-line}
+  button{font-family:inherit;font-size:inherit;color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+  .section{padding:44px 0 40px}
+  .h2{font-size:clamp(1.35rem,4.6vw,1.6rem);line-height:1.3;margin:0 0 6px;font-weight:500;letter-spacing:.02em;text-transform:uppercase}
+  .lead{font-size:.9rem;color:var(--ink);margin:0 0 20px;white-space:pre-line}
   .center{text-align:center}
-  .center .lead{margin-left:auto;margin-right:auto}
 
-  .btn{display:inline-flex;align-items:center;gap:.5em;border:1px solid var(--pink);background:var(--pink);color:#fff;
-    font-family:var(--display);font-weight:600;font-size:.86rem;letter-spacing:.02em;padding:14px 26px;border-radius:999px;
-    cursor:pointer;transition:background .2s,transform .15s;white-space:nowrap}
-  .btn:hover{background:var(--pink-deep);border-color:var(--pink-deep);transform:translateY(-1px)}
-  .btn--line{background:transparent;color:var(--ink);border-color:var(--line)}
+  /* ボタン: 角丸長方形（ピルはタブのみ） */
+  .btn{display:inline-flex;align-items:center;justify-content:space-between;gap:1.4em;border:1px solid var(--pink);background:var(--pink);color:#fff;
+    font-weight:500;font-size:.82rem;letter-spacing:.02em;padding:11px 22px;border-radius:var(--radius);cursor:pointer;
+    transition:background .2s,border-color .2s;white-space:nowrap;line-height:1.4}
+  .btn:hover{background:var(--pink-deep);border-color:var(--pink-deep)}
+  .btn--line{background:#fff;color:var(--ink);border-color:#cfcbc6}
   .btn--line:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
-  .btn--dark{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
-  .btn--dark:hover{background:#fff;color:var(--ink)}
-  .btn--wide{width:100%;justify-content:center}
-  .btn-row{display:flex;gap:12px;flex-wrap:wrap}
+  .btn--wide{width:100%}
+  .btn .ar{font-weight:400}
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
   .center .btn-row{justify-content:center}
 
-  /*
-    画像プレースホルダ: 斜め十字＋汎用バッグアイコンで「実写真差し替え待ち」を統一表現。
-    ワイヤーフレーム内の実プレースホルダ（PICK YOUR MOOD / SNS / FINAL CTA）と同じ見た目にするため、
-    ボックス内にテキストラベルは置かない（前回の実装はここが違っていた）。
-  */
-  .ph{position:relative;display:block;background:var(--panel);border:1px solid var(--line);
-    border-radius:var(--radius);min-height:220px;overflow:hidden}
-  .ph::before{content:"";position:absolute;inset:0;
+  /* 画像枠。実画像は .has-img、未撮影は斜め十字のプレースホルダ */
+  .ph{position:relative;display:block;background:var(--panel);overflow:hidden}
+  .ph::before{content:"";position:absolute;inset:0;pointer-events:none;
     background:
-      linear-gradient(135deg,transparent calc(50% - 1px),var(--line) 50%,transparent calc(50% + 1px)),
-      linear-gradient(45deg,transparent calc(50% - 1px),var(--line) 50%,transparent calc(50% + 1px));
-    pointer-events:none}
-  .ph::after{content:"";position:absolute;top:50%;left:50%;width:34%;aspect-ratio:1;transform:translate(-50%,-50%);
-    background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path d="M16 27c0-8 7-15 16-15s16 7 16 15v21a5 5 0 0 1-5 5H21a5 5 0 0 1-5-5z" fill="none" stroke="%23c7bfb4" stroke-width="2"/><path d="M23 25c0-6.5 4.3-11 9-11s9 4.5 9 11" fill="none" stroke="%23c7bfb4" stroke-width="2"/></svg>') center/contain no-repeat;
-    pointer-events:none}
-  .ph.has-img::before,.ph.has-img::after{display:none}
-  img.ph-prod{position:relative;object-fit:contain;width:100%;height:100%;background:#fff}
+      linear-gradient(135deg,transparent calc(50% - .5px),#d9d6d1 50%,transparent calc(50% + .5px)),
+      linear-gradient(45deg,transparent calc(50% - .5px),#d9d6d1 50%,transparent calc(50% + .5px))}
+  .ph.has-img::before{display:none}
+  .ph img{width:100%;height:100%;object-fit:cover}
+  .ph.contain{background:#fff;border:1px solid var(--line)}
+  .ph.contain img{object-fit:contain}
 
   /* ヘッダー（共通） */
-  .nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
-  .nav-left,.nav-right{display:flex;align-items:center;gap:14px}
+  .nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
+  .nav-left,.nav-right{display:flex;align-items:center;gap:10px;flex:0 0 72px}
+  .nav-right{justify-content:flex-end}
   .icon-btn{border:0;background:none;cursor:pointer;color:var(--ink);padding:6px;display:flex;line-height:0}
-  .icon-btn svg{width:22px;height:22px}
-  .brand{font-family:var(--display);font-weight:600;letter-spacing:.06em;font-size:1rem;white-space:nowrap}
-  .drawer{position:fixed;inset:64px 0 0 0;background:var(--paper);z-index:59;transform:translateY(-8px);opacity:0;
+  .icon-btn svg{width:20px;height:20px}
+  .brand{font-weight:500;letter-spacing:.02em;font-size:.98rem;white-space:nowrap}
+  .drawer{position:fixed;inset:56px 0 0 0;background:var(--paper);z-index:59;transform:translateY(-8px);opacity:0;
     pointer-events:none;transition:opacity .2s,transform .2s;border-top:1px solid var(--line)}
   .drawer.open{opacity:1;transform:translateY(0);pointer-events:auto}
-  .drawer nav{display:flex;flex-direction:column;padding:8px 20px}
+  .drawer nav{display:flex;flex-direction:column;padding:8px var(--gutter);max-width:var(--maxw);margin:0 auto}
   .drawer nav a{padding:16px 4px;border-bottom:1px solid var(--line);font-size:.95rem}
 
   /* 01 HERO */
-  #hero{padding:0}
-  .hero-media{position:relative;min-height:78vh;max-height:640px;display:flex;align-items:flex-end;border-radius:0}
-  .hero-media .ph{position:absolute;inset:0;border-radius:0;border:0;min-height:unset}
-  .hero-media::after{content:"";position:absolute;inset:0;z-index:1;
-    background:linear-gradient(to top,rgba(20,18,16,.6) 0%,rgba(20,18,16,.18) 46%,rgba(20,18,16,0) 68%);pointer-events:none}
-  /* 実写真差し替え後もこのスクリムが下部テキストの可読性を確保する */
-  .hero-inner{position:relative;z-index:2;padding:40px 20px 44px;width:100%}
-  .hero-inner h1{font-family:var(--display);color:#fff;font-size:clamp(1.9rem,7vw,2.6rem);font-weight:700;
-    line-height:1.3;margin:0 0 10px;white-space:pre-line;text-wrap:balance}
-  .hero-inner .sub{font-size:1rem;color:#fff;margin:0 0 22px}
-  .scroll-hint{display:flex;justify-content:center;padding:14px 0 0;color:var(--sub);animation:bob 1.8s ease-in-out infinite}
-  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+  .hero{position:relative;max-width:var(--maxw);margin:0 auto}
+  .hero .ph{aspect-ratio:1/1.04}
+  .hero .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(255,255,255,.55),rgba(255,255,255,0) 55%);pointer-events:none}
+  .hero-copy{position:absolute;left:0;right:0;top:40%;padding:0 var(--gutter)}
+  .hero-copy h1{font-size:clamp(1.6rem,6.4vw,2.2rem);line-height:1.35;margin:0 0 6px;font-weight:700;letter-spacing:.01em}
+  .hero-copy .sub{font-size:.95rem;margin:0 0 16px}
+  .hero-copy .btn{padding:10px 18px}
+  .chev{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;color:var(--ink);pointer-events:none}
+  .chev svg{width:18px;height:18px}
 
   /* 02 INTRODUCTION */
-  #intro{background:var(--paper)}
-  #intro .name{font-size:.98rem;color:var(--sub);margin:0 0 6px}
-  #intro .tag{font-family:var(--display);font-size:clamp(1.3rem,4vw,1.7rem);font-weight:700;margin:0 0 22px}
-  #intro .body{font-size:.96rem;color:var(--sub);white-space:pre-line;max-width:36ch;margin:0 auto 30px}
-  #intro .ph{min-height:320px}
+  #intro .name{font-size:1.02rem;margin:0}
+  #intro .tag{font-size:1.02rem;font-weight:500;margin:0 0 18px}
+  #intro .body{font-size:.86rem;white-space:pre-line;margin:0 auto 24px;line-height:2}
+  #intro .ph{aspect-ratio:2/1}
+  #intro .chev2{display:flex;justify-content:center;padding-top:14px;color:var(--ink)}
+  #intro .chev2 svg{width:18px;height:18px}
 
-  /* カルーセル 共通 */
-  .carousel{display:flex;gap:16px;overflow-x:auto;padding:8px 20px 18px;margin:0 -20px;scroll-snap-type:x mandatory;
-    overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-  .carousel::-webkit-scrollbar{display:none}
-  .dots{display:flex;justify-content:center;gap:7px;margin-top:6px}
-  .dots i{width:6px;height:6px;border-radius:50%;background:var(--line);transition:background .2s,transform .2s}
-  .dots i.on{background:var(--pink-deep);transform:scale(1.3)}
+  /* カルーセル共通: 両脇に矢印、下にドット */
+  .car{position:relative;padding:0 24px}
+  .track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .track::-webkit-scrollbar{display:none}
+  .track>*{scroll-snap-align:start;flex:0 0 100%}
+  .track.three>*{flex-basis:calc((100% - 24px)/3)}
+  .track.two>*{flex-basis:calc((100% - 12px)/2)}
+  .arrow{position:absolute;top:0;bottom:0;width:24px;border:0;background:none;cursor:pointer;color:var(--ink);
+    display:flex;align-items:center;justify-content:center;padding:0}
+  .arrow svg{width:16px;height:16px}
+  .arrow.prev{left:0}.arrow.next{right:0}
+  .dots{display:flex;justify-content:center;gap:8px;margin-top:16px}
+  .dots i{width:6px;height:6px;border-radius:50%;background:#d6d3ce}
+  .dots i.on{background:var(--ink)}
 
-  /* 03 COLOR YOUR DAY / 11 FIND YOUR COLOR: 色カード */
-  .color-card{flex:0 0 62vw;max-width:230px;scroll-snap-align:start}
-  .color-card .ph{aspect-ratio:4/5;min-height:unset}
-  .color-card .lbl{margin-top:10px;text-align:center;font-size:.82rem;color:var(--ink)}
-  #colorday,#findcolor{background:var(--paper)}
+  /* 色タイル（03 / 05 / 11） */
+  .tile .ph{aspect-ratio:1/1}
+  .tile .lbl{margin:8px 0 0;text-align:center;font-size:.68rem;letter-spacing:.04em;text-transform:uppercase}
 
   /* 04 STYLE SNAP */
-  #stylesnap{background:var(--panel)}
-  .snap-card{flex:0 0 84vw;max-width:420px;scroll-snap-align:center}
-  .snap-card .ph{aspect-ratio:4/5;min-height:unset}
-  .snap-cap{margin-top:10px;text-align:center;font-size:.82rem;color:var(--sub)}
-  .snap-cap b{color:var(--ink);font-weight:600}
+  .snap .ph{aspect-ratio:5/4}
+  .snap-cap{margin:12px 0 0;text-align:center;font-size:.76rem;line-height:1.7}
+  .snap-cap b{display:block;font-weight:700;letter-spacing:.04em}
 
   /* 05 PICK YOUR MOOD */
-  #mood{background:var(--paper)}
-  .mood-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:20px 0 6px}
-  .mood-tab{border:1px solid transparent;background:var(--panel);color:var(--sub);font-family:var(--display);font-weight:600;
-    font-size:.78rem;letter-spacing:.04em;padding:9px 18px;border-radius:999px;cursor:pointer;transition:.15s}
-  .mood-tab[aria-selected="true"]{background:var(--pink);border-color:var(--pink);color:#fff}
+  .mood-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:0 0 18px}
+  .mood-tab{border:1px solid transparent;background:var(--panel);color:var(--sub);font-weight:500;font-size:.72rem;
+    letter-spacing:.06em;padding:8px 16px;border-radius:999px;cursor:pointer;transition:.15s}
+  .mood-tab[aria-selected="true"]{background:var(--pink);color:#fff}
   .mood-panel{display:none}
   .mood-panel.active{display:block}
 
   /* 06 WHAT'S IN MY BAG */
-  #inbag{background:var(--panel)}
-  .inbag-card{flex:0 0 78vw;max-width:340px;scroll-snap-align:center}
-  .inbag-card .ph{aspect-ratio:1/1;min-height:unset}
-  .inbag-cap{margin-top:10px;text-align:center;font-size:.82rem;color:var(--sub)}
+  .inbag .ph{aspect-ratio:1/1}
+  .inbag .cap{margin:0;background:var(--panel);text-align:center;font-size:.78rem;padding:8px 4px}
 
   /* 07 LIGHT & EASY */
-  #feature{background:var(--paper)}
-  .feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:26px}
-  .feature-card{border:1px solid var(--line);border-radius:var(--radius);padding:24px 14px;text-align:center;background:var(--paper)}
-  .feature-card .ic{width:32px;height:32px;margin:0 auto 12px;color:var(--ink)}
-  .feature-card b{display:block;font-family:var(--display);font-size:.74rem;letter-spacing:.08em;color:var(--ink);margin-bottom:4px}
-  .feature-card span{font-size:.82rem;color:var(--sub)}
+  .feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .feature-card{border:1px solid var(--line);border-radius:var(--radius);padding:18px 6px 16px;text-align:center;background:#fff}
+  .feature-card .ic{width:30px;height:30px;margin:0 auto 10px;color:var(--ink)}
+  .feature-card b{display:block;font-size:.62rem;letter-spacing:.06em;font-weight:600;line-height:1.4;margin-bottom:4px}
+  .feature-card span{font-size:.74rem}
 
   /* 08 DETAILS */
-  #details{background:var(--panel)}
-  #details .main-ph{aspect-ratio:5/4;margin-bottom:16px}
-  .detail-card{flex:0 0 42vw;max-width:170px;scroll-snap-align:start}
-  .detail-card .ph{aspect-ratio:1/1;min-height:unset}
-  .detail-card .lbl{margin-top:8px;text-align:center;font-size:.78rem;color:var(--sub)}
+  #details .main .ph{aspect-ratio:2/1;margin-bottom:12px}
+  .detail-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .detail-grid .ph{aspect-ratio:1/1}
+  .detail-grid .lbl{margin:8px 0 0;text-align:center;font-size:.74rem}
 
   /* 09 MADE IN JAPAN */
-  #japan{position:relative;background:#1c1a17;color:#fff;text-align:center;overflow:hidden}
-  #japan .ph{position:absolute;inset:0;border-radius:0;border:0;background:#2a2723;min-height:unset}
-  #japan .ph::before{filter:invert(1);opacity:.12}
-  #japan .ph::after{filter:invert(1);opacity:.25}
-  #japan .wrap{position:relative;z-index:1;padding:80px 20px}
-  #japan h2{color:#fff}
-  #japan .lead{color:#d3cfc9;margin:0 auto 26px}
+  #japan .banner{position:relative}
+  #japan .banner .ph{aspect-ratio:2/1}
+  #japan .banner .ph::after{content:"";position:absolute;inset:0;background:rgba(40,36,33,.35)}
+  #japan .ov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:0 16px}
+  #japan .ov .en{font-size:.92rem;letter-spacing:.14em;margin:0 0 10px;opacity:.9}
+  #japan .ov .jp{font-size:clamp(1.05rem,3.8vw,1.3rem);line-height:1.6;margin:0;white-space:pre-line;font-weight:500}
+  #japan .body{font-size:.86rem;line-height:2;margin:18px 0 0;white-space:pre-line;text-align:left}
 
   /* 10 SNS / UGC */
-  #ugc{background:var(--paper)}
-  .ugc-card{flex:0 0 60vw;max-width:220px;scroll-snap-align:start}
-  .ugc-card .ph{aspect-ratio:1/1;min-height:unset}
-  .ugc-meta{margin-top:8px;font-size:.78rem;color:var(--sub);text-align:center}
-  .ugc-meta b{display:block;color:var(--ink);font-weight:600}
+  .ugc .ph{aspect-ratio:1/1}
+  .ugc-meta{margin:8px 0 0;font-size:.7rem;line-height:1.6;text-align:left}
+  .ugc-meta .handle{display:flex;align-items:center;gap:5px;color:var(--sub);margin-bottom:6px}
+  .ugc-meta .handle svg{width:14px;height:14px;flex:0 0 auto}
+  .ugc-meta .color{font-size:.74rem;white-space:pre-line}
 
   /* 12 FINAL CTA */
-  #finalcta{background:var(--panel)}
-  .cta-card{display:flex;gap:22px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius);
-    padding:22px;max-width:520px;margin:0 auto}
-  .cta-card .ph{flex:0 0 120px;aspect-ratio:1/1;min-height:unset}
-  .cta-info{flex:1;min-width:0;text-align:left}
-  .cta-info h3{margin:0 0 4px;font-family:var(--display);font-size:1.05rem;font-weight:700;text-transform:none}
-  .cta-price{font-family:var(--display);color:var(--ink);font-size:1.05rem;font-weight:600;margin:0 0 10px}
-  .swatches{display:flex;align-items:center;gap:6px;margin-bottom:16px;flex-wrap:wrap}
-  .swatches i{width:20px;height:20px;border-radius:50%;box-shadow:0 0 0 1px rgba(0,0,0,.06) inset}
-  .swatches .more{font-size:.76rem;color:var(--sub);font-family:var(--display)}
-  #finalcta .btn-row{flex-direction:column;align-items:stretch}
+  .cta-card{display:grid;grid-template-columns:42% 1fr;gap:18px;align-items:start}
+  .cta-card .ph{aspect-ratio:1/1}
+  .cta-info h3{margin:0 0 6px;font-size:1rem;font-weight:500}
+  .cta-price{font-size:1.05rem;font-weight:500;margin:0 0 12px}
+  .cta-price small{font-size:.7rem;color:var(--sub);font-weight:400;margin-left:.4em}
+  .swatches{display:flex;align-items:center;gap:7px;margin-bottom:16px;flex-wrap:wrap}
+  .swatches i{width:18px;height:18px;border-radius:50%;box-shadow:0 0 0 1px rgba(0,0,0,.06) inset}
+  .swatches .more{width:22px;height:22px;border-radius:50%;background:var(--panel);font-size:.6rem;display:flex;align-items:center;justify-content:center}
+  .cta-info .btn-row{flex-direction:column;margin-top:0}
 
-  footer{background:var(--paper);border-top:1px solid var(--line);padding:44px 0 32px;text-align:center;color:var(--sub);font-size:.85rem}
-  footer .brand{color:var(--ink);font-family:var(--display);letter-spacing:.1em;font-size:1.05rem;margin-bottom:14px;font-weight:700}
-  footer .flinks{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;font-size:.82rem;margin-bottom:16px}
-  footer .flinks a:hover{color:var(--ink)}
-  footer .sns{display:flex;justify-content:center;gap:16px;margin-bottom:18px}
-  footer .sns a{color:var(--ink)}
-  footer .sns svg{width:19px;height:19px}
-  footer .fine{opacity:.6;font-size:.75rem}
+  footer{border-top:1px solid var(--line);padding:32px 0 28px;text-align:center;font-size:.78rem;color:var(--sub)}
+  footer .brand{color:var(--ink);font-size:.98rem;margin:0 0 14px;font-weight:600}
+  footer .flinks{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:16px;color:var(--ink)}
+  footer .sns{display:flex;justify-content:center;gap:18px;margin-bottom:16px}
+  footer .sns a{color:var(--ink);line-height:0}
+  footer .sns svg{width:18px;height:18px}
+  footer .fine{margin:0;font-size:.68rem}
 
-  @media (min-width:720px){
-    .wrap{padding:0 40px}
-    .section{padding:96px 0}
-    .feature-grid{grid-template-columns:repeat(4,1fr)}
-    .color-card{flex-basis:26vw;max-width:210px}
-    .snap-card{flex-basis:52vw}
-    .inbag-card{flex-basis:38vw}
-    .ugc-card{flex-basis:26vw}
-    .detail-card{flex-basis:20vw}
-    .carousel{padding-left:calc((100vw - var(--maxw) + 80px)/2);padding-right:calc((100vw - var(--maxw) + 80px)/2)}
-  }
+  .alt{background:var(--paper)}
 </style>
 </head>
 <body>
@@ -217,16 +188,16 @@
   <div class="wrap">
     <div class="nav-left">
       <button class="icon-btn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
       </button>
     </div>
     <div class="brand">Leather Style</div>
     <div class="nav-right">
       <button class="icon-btn" aria-label="検索">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </button>
       <button class="icon-btn" aria-label="カート">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L4 3H2"/><circle cx="9" cy="20" r="1.4" fill="currentColor" stroke="none"/><circle cx="18" cy="20" r="1.4" fill="currentColor" stroke="none"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L4 3H2"/><circle cx="9" cy="20" r="1.3" fill="currentColor" stroke="none"/><circle cx="18" cy="20" r="1.3" fill="currentColor" stroke="none"/></svg>
       </button>
     </div>
   </div>
@@ -243,24 +214,20 @@
 
 <main>
 
-  <!-- 01 HERO -->
+  <!-- 01 HERO: モデル着用＋メインコピー -->
   <section id="hero">
-    <div class="hero-media">
-      <div class="ph"></div>
-      <div class="hero-inner wrap">
+    <div class="hero">
+      <div class="ph has-img"><img src="images/hero.jpg" alt=""></div>
+      <div class="hero-copy">
         <h1>毎日に、<br>わたしらしい色を。</h1>
         <p class="sub">Kawaii Chic Shoulder</p>
-        <div class="btn-row">
-          <a href="#finalcta" class="btn">商品を見る →</a>
-        </div>
+        <a href="#finalcta" class="btn">商品を見る <span class="ar">→</span></a>
       </div>
-    </div>
-    <div class="scroll-hint">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <div class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="6 9 12 15 18 9"/></svg></div>
     </div>
   </section>
 
-  <!-- 02 INTRODUCTION -->
+  <!-- 02 INTRODUCTION: 商品コンセプト -->
   <section id="intro" class="section center">
     <div class="wrap">
       <p class="name">Kawaii Chic Shoulder</p>
@@ -270,199 +237,250 @@
 持つたびに、気分が上がる。
 Kawaii Chic Shoulderで、
 新しいわたしに出会ってみませんか。</p>
-      <div class="ph"></div>
+      <div class="ph has-img"><img src="images/intro.jpg" alt="" loading="lazy"></div>
+      <div class="chev2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="6 9 12 15 18 9"/></svg></div>
     </div>
   </section>
 
-  <!-- 03 COLOR YOUR DAY -->
+  <!-- 03 COLOR YOUR DAY: 15色カラー紹介 -->
   <section id="colorday" class="section center">
     <div class="wrap">
-      <h2 class="h2">COLOR YOUR DAY.</h2>
+      <h2 class="h2">Color Your Day.</h2>
       <p class="lead">気分も、コーデも、色で変わる。</p>
+      <div class="car" data-carousel>
+        <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
+        <div class="track three">
+          <div class="tile"><div class="ph contain has-img"><img src="images/bag-pink-beige.jpg" alt="PINK BEIGE" loading="lazy"></div><p class="lbl">Pink Beige</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/bag-camel.jpg" alt="CAMEL" loading="lazy"></div><p class="lbl">Camel</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/bag-mint.jpg" alt="MINT" loading="lazy"></div><p class="lbl">Mint</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/bag-macaron-pink.jpg" alt="MACARON PINK" loading="lazy"></div><p class="lbl">Macaron Pink</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/bag-sumire.jpg" alt="SUMIRE" loading="lazy"></div><p class="lbl">Sumire</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/bag-sage.jpg" alt="SAGE" loading="lazy"></div><p class="lbl">Sage</p></div>
+        </div>
+        <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
+      </div>
+      <div class="dots"></div>
+      <div class="btn-row"><a href="#finalcta" class="btn btn--line">すべてのカラーを見る <span class="ar">→</span></a></div>
     </div>
-    <div class="carousel" id="colorCarousel" data-dots="colorDots">
-      <div class="color-card"><div class="ph"></div><p class="lbl">PINK BEIGE</p></div>
-      <div class="color-card"><div class="ph"></div><p class="lbl">CAMEL</p></div>
-      <div class="color-card"><div class="ph"></div><p class="lbl">MINT</p></div>
-      <div class="color-card"><div class="ph"></div><p class="lbl">MACARON PINK</p></div>
-      <div class="color-card"><div class="ph"></div><p class="lbl">SUMIRE</p></div>
-    </div>
-    <div class="dots" id="colorDots"></div>
-    <div class="wrap center"><div class="btn-row"><a href="#finalcta" class="btn btn--line">すべての色を見る →</a></div></div>
   </section>
 
-  <!-- 04 STYLE SNAP -->
+  <!-- 04 STYLE SNAP: 女性モデルのコーデ紹介 -->
   <section id="stylesnap" class="section center">
     <div class="wrap">
-      <h2 class="h2">STYLE SNAP</h2>
+      <h2 class="h2">Style Snap</h2>
       <p class="lead">わたしらしい、持ち方を見つけて。</p>
+      <div class="car" data-carousel>
+        <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
+        <div class="track">
+          <div class="snap"><div class="ph has-img"><img src="images/snap-1.jpg" alt="" loading="lazy"></div><p class="snap-cap"><b>PINK BEIGE</b>Soft &amp; Feminine</p></div>
+          <div class="snap"><div class="ph has-img"><img src="images/snap-2.jpg" alt="" loading="lazy"></div><p class="snap-cap"><b>CAMEL</b>Casual Mode</p></div>
+          <div class="snap"><div class="ph has-img"><img src="images/snap-3.jpg" alt="" loading="lazy"></div><p class="snap-cap"><b>MINT</b>Fresh Natural</p></div>
+          <div class="snap"><div class="ph has-img"><img src="images/snap-4.jpg" alt="" loading="lazy"></div><p class="snap-cap"><b>SUMIRE</b>Elegant Mood</p></div>
+        </div>
+        <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
+      </div>
+      <div class="dots"></div>
     </div>
-    <div class="carousel" id="snapCarousel">
-      <div class="snap-card"><div class="ph"></div><p class="snap-cap"><b>PINK BEIGE</b> ・ Soft &amp; Feminine</p></div>
-      <div class="snap-card"><div class="ph"></div><p class="snap-cap"><b>CAMEL</b> ・ Casual Mode</p></div>
-      <div class="snap-card"><div class="ph"></div><p class="snap-cap"><b>MINT</b> ・ Fresh Natural</p></div>
-      <div class="snap-card"><div class="ph"></div><p class="snap-cap"><b>SUMIRE</b> ・ Elegant Mood</p></div>
-    </div>
-    <div class="dots" id="snapDots"></div>
   </section>
 
-  <!-- 05 PICK YOUR MOOD -->
+  <!-- 05 PICK YOUR MOOD: テイスト別カラー提案 -->
   <section id="mood" class="section center">
     <div class="wrap">
-      <h2 class="h2">PICK YOUR MOOD.</h2>
+      <h2 class="h2">Pick Your Mood.</h2>
       <p class="lead">今日の気分で、選ぶ。</p>
-      <div class="mood-tabs" role="tablist" aria-label="ムードで選ぶ">
+      <div class="mood-tabs" role="tablist" aria-label="テイストで選ぶ">
         <button class="mood-tab" role="tab" aria-selected="true" data-mood="sweet">SWEET</button>
         <button class="mood-tab" role="tab" aria-selected="false" data-mood="natural">NATURAL</button>
         <button class="mood-tab" role="tab" aria-selected="false" data-mood="mode">MODE</button>
         <button class="mood-tab" role="tab" aria-selected="false" data-mood="others">OTHERS</button>
       </div>
-    </div>
-
-    <div class="mood-panel active" id="mood-sweet">
-      <div class="carousel">
-        <div class="color-card"><div class="ph"></div><p class="lbl">PINK BEIGE</p></div>
-        <div class="color-card"><div class="ph"></div><p class="lbl">MACARON PINK</p></div>
-        <div class="color-card"><div class="ph"></div><p class="lbl">SUMIRE</p></div>
+      <div class="mood-panel active" id="mood-sweet">
+        <div class="car" data-carousel>
+          <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
+          <div class="track three">
+            <div class="tile"><div class="ph contain has-img"><img src="images/bag-pink-beige.jpg" alt="PINK BEIGE" loading="lazy"></div><p class="lbl">Pink Beige</p></div>
+            <div class="tile"><div class="ph contain has-img"><img src="images/bag-macaron-pink.jpg" alt="MACARON PINK" loading="lazy"></div><p class="lbl">Macaron Pink</p></div>
+            <div class="tile"><div class="ph contain has-img"><img src="images/bag-sumire.jpg" alt="SUMIRE" loading="lazy"></div><p class="lbl">Sumire</p></div>
+          </div>
+          <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
+        </div>
+        <div class="dots"></div>
       </div>
-    </div>
-    <div class="mood-panel" id="mood-natural">
-      <div class="carousel">
-        <div class="color-card"><div class="ph"></div><p class="lbl">SAGE</p></div>
-        <div class="color-card"><div class="ph"></div><p class="lbl">BEIGE</p></div>
-        <div class="color-card"><div class="ph"></div><p class="lbl">CAMEL</p></div>
+      <div class="mood-panel" id="mood-natural">
+        <div class="car" data-carousel>
+          <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
+          <div class="track three">
+            <div class="tile"><div class="ph contain has-img"><img src="images/bag-sage.jpg" alt="SAGE" loading="lazy"></div><p class="lbl">Sage</p></div>
+            <div class="tile"><div class="ph contain has-img"><img src="images/bag-beige.jpg" alt="BEIGE" loading="lazy"></div><p class="lbl">Beige</p></div>
+            <div class="tile"><div class="ph contain has-img"><img src="images/bag-camel.jpg" alt="CAMEL" loading="lazy"></div><p class="lbl">Camel</p></div>
+          </div>
+          <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
+        </div>
+        <div class="dots"></div>
       </div>
-    </div>
-    <div class="mood-panel" id="mood-mode">
-      <div class="carousel">
-        <div class="color-card"><div class="ph"></div><p class="lbl">BLACK</p></div>
-        <div class="color-card"><div class="ph"></div><p class="lbl">NAVY</p></div>
-        <div class="color-card"><div class="ph"></div><p class="lbl">GRAY</p></div>
+      <div class="mood-panel" id="mood-mode">
+        <div class="car" data-carousel>
+          <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
+          <div class="track three">
+            <div class="tile"><div class="ph contain has-img"><img src="images/bag-black.jpg" alt="BLACK" loading="lazy"></div><p class="lbl">Black</p></div>
+            <div class="tile"><div class="ph contain has-img"><img src="images/bag-navy.jpg" alt="NAVY" loading="lazy"></div><p class="lbl">Navy</p></div>
+            <div class="tile"><div class="ph contain has-img"><img src="images/bag-gray.jpg" alt="GRAY" loading="lazy"></div><p class="lbl">Gray</p></div>
+          </div>
+          <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
+        </div>
+        <div class="dots"></div>
       </div>
-    </div>
-    <div class="mood-panel" id="mood-others">
-      <div class="carousel">
-        <div class="color-card"><div class="ph"></div><p class="lbl">MINT</p></div>
-        <div class="color-card"><div class="ph"></div><p class="lbl">SILVER</p></div>
-        <div class="color-card"><div class="ph"></div><p class="lbl">WINE</p></div>
+      <div class="mood-panel" id="mood-others">
+        <div class="car" data-carousel>
+          <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
+          <div class="track three">
+            <div class="tile"><div class="ph contain has-img"><img src="images/bag-mint.jpg" alt="MINT" loading="lazy"></div><p class="lbl">Mint</p></div>
+            <div class="tile"><div class="ph contain has-img"><img src="images/bag-silver.jpg" alt="SILVER" loading="lazy"></div><p class="lbl">Silver</p></div>
+            <div class="tile"><div class="ph contain has-img"><img src="images/bag-wine.jpg" alt="WINE" loading="lazy"></div><p class="lbl">Wine</p></div>
+          </div>
+          <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
+        </div>
+        <div class="dots"></div>
       </div>
     </div>
   </section>
 
-  <!-- 06 WHAT'S IN MY BAG -->
+  <!-- 06 WHAT'S IN MY BAG?: 収納例 -->
   <section id="inbag" class="section center">
     <div class="wrap">
-      <h2 class="h2">WHAT'S IN MY BAG?</h2>
+      <h2 class="h2">What's In My Bag?</h2>
       <p class="lead">見た目以上に、ちゃんと入る。</p>
+      <div class="car" data-carousel>
+        <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
+        <div class="track two">
+          <div class="inbag"><div class="ph has-img"><img src="images/inbag-items.jpg" alt="" loading="lazy"></div><p class="cap">入れるもの</p></div>
+          <div class="inbag"><div class="ph has-img"><img src="images/inbag-packed.jpg" alt="" loading="lazy"></div><p class="cap">収納後</p></div>
+        </div>
+        <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
+      </div>
+      <div class="dots"></div>
     </div>
-    <div class="carousel" id="inbagCarousel">
-      <div class="inbag-card"><div class="ph"></div><p class="inbag-cap">入れるもの</p></div>
-      <div class="inbag-card"><div class="ph"></div><p class="inbag-cap">収納後</p></div>
-    </div>
-    <div class="dots" id="inbagDots"></div>
   </section>
 
-  <!-- 07 LIGHT & EASY -->
+  <!-- 07 LIGHT & EASY: 軽さ・耐久・撥水等 -->
   <section id="feature" class="section center">
     <div class="wrap">
-      <h2 class="h2">LIGHT &amp; EASY.</h2>
+      <h2 class="h2">Light &amp; Easy.</h2>
       <p class="lead">毎日使いたくなる、4つの理由。</p>
       <div class="feature-grid">
         <div class="feature-card">
-          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2c-3 4-3 7 0 10s3 6 0 10"/></svg>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M20 4c-6 0-11 4-12 11l-4 5"/><path d="M8 15c4 1 8-1 10-6"/><path d="M11 11c2 .5 4 0 6-2"/></svg>
           <b>LIGHT</b><span>軽い</span>
         </div>
         <div class="feature-card">
-          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2c4 5 7 9 7 12a7 7 0 0 1-14 0c0-3 3-7 7-12z"/></svg>
-          <b>WATER RESISTANT</b><span>水に強い</span>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 3c4 5 7 9 7 12a7 7 0 0 1-14 0c0-3 3-7 7-12z"/></svg>
+          <b>WATER<br>RESISTANT</b><span>水に強い</span>
         </div>
         <div class="feature-card">
-          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 4h12l4 5-10 12L2 9z"/><path d="M2 9h20M9 4l3 5 3-5M9 9l3 12 3-12"/></svg>
           <b>DURABLE</b><span>丈夫</span>
         </div>
         <div class="feature-card">
-          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 13l4 4L19 7"/></svg>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M11 5l1.6 4.4L17 11l-4.4 1.6L11 17l-1.6-4.4L5 11l4.4-1.6z"/><path d="M18 3l.7 1.8L20.5 5.5l-1.8.7L18 8l-.7-1.8L15.5 5.5l1.8-.7z"/><path d="M19 15l.5 1.3 1.3.5-1.3.5L19 18.6l-.5-1.3-1.3-.5 1.3-.5z"/></svg>
           <b>EASY CARE</b><span>お手入れ簡単</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 08 DETAILS -->
+  <!-- 08 DETAILS: 金具・縫製・素材等 -->
   <section id="details" class="section center">
     <div class="wrap">
-      <h2 class="h2">DETAILS</h2>
+      <h2 class="h2">Details</h2>
       <p class="lead">細部まで、こだわりを。</p>
-      <div class="ph main-ph"></div>
-    </div>
-    <div class="carousel" id="detailCarousel">
-      <div class="detail-card"><div class="ph"></div><p class="lbl">金具</p></div>
-      <div class="detail-card"><div class="ph"></div><p class="lbl">ステッチ</p></div>
-      <div class="detail-card"><div class="ph"></div><p class="lbl">素材</p></div>
-      <div class="detail-card"><div class="ph"></div><p class="lbl">内側</p></div>
+      <div class="main"><div class="ph has-img"><img src="images/details-main.jpg" alt="" loading="lazy"></div></div>
+      <div class="detail-grid">
+        <div><div class="ph has-img"><img src="images/detail-clasp.jpg" alt="" loading="lazy"></div><p class="lbl">金具</p></div>
+        <div><div class="ph has-img"><img src="images/detail-stitch.jpg" alt="" loading="lazy"></div><p class="lbl">ステッチ</p></div>
+        <div><div class="ph has-img"><img src="images/detail-material.jpg" alt="" loading="lazy"></div><p class="lbl">素材</p></div>
+        <div><div class="ph has-img"><img src="images/detail-inside.jpg" alt="" loading="lazy"></div><p class="lbl">内側</p></div>
+      </div>
     </div>
   </section>
 
-  <!-- 09 MADE IN JAPAN -->
-  <section id="japan">
-    <div class="ph"></div>
-    <div class="wrap center">
-      <h2 class="h2">MADE IN JAPAN</h2>
-      <p class="lead">日本のものづくりを、
-あなたの日々に。</p>
-      <p class="lead">ひとつひとつ、丁寧に。
+  <!-- 09 MADE IN JAPAN: 国内生産・職人 -->
+  <section id="japan" class="section center">
+    <div class="wrap">
+      <div class="banner">
+        <div class="ph has-img"><img src="images/japan.jpg" alt="" loading="lazy"></div>
+        <div class="ov">
+          <p class="en">MADE IN JAPAN</p>
+          <p class="jp">日本のものづくりを、
+あなたの毎日に。</p>
+        </div>
+      </div>
+      <p class="body">ひとつひとつ、丁寧に。
 日本の職人が仕立てる、
 長く愛せるバッグです。</p>
-      <div class="btn-row"><a href="#feature" class="btn btn--dark">ものづくりについて見る →</a></div>
+      <div class="btn-row"><a href="#feature" class="btn btn--line">ものづくりについて見る <span class="ar">→</span></a></div>
     </div>
   </section>
 
-  <!-- 10 SNS / UGC -->
+  <!-- 10 SNS / UGC: Instagram投稿（枠のみ。投稿は先方入力） -->
   <section id="ugc" class="section center">
     <div class="wrap">
-      <h2 class="h2">REAL VOICES.</h2>
+      <h2 class="h2">Real Voices.</h2>
       <p class="lead">みんなの「かわいい」をシェア。</p>
+      <div class="car" data-carousel>
+        <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
+        <div class="track three">
+          <div class="ugc"><div class="ph"></div><div class="ugc-meta"><div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M6 19c1.5-3 4-4 6-4s4.5 1 6 4"/></svg>@kana__</div><p class="color">使用カラー：
+PINK BEIGE</p></div></div>
+          <div class="ugc"><div class="ph"></div><div class="ugc-meta"><div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M6 19c1.5-3 4-4 6-4s4.5 1 6 4"/></svg>@m_0118</div><p class="color">使用カラー：
+SILVER</p></div></div>
+          <div class="ugc"><div class="ph"></div><div class="ugc-meta"><div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M6 19c1.5-3 4-4 6-4s4.5 1 6 4"/></svg>@yuu.__fashion</div><p class="color">使用カラー：
+CAMEL</p></div></div>
+          <div class="ugc"><div class="ph"></div><div class="ugc-meta"><div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M6 19c1.5-3 4-4 6-4s4.5 1 6 4"/></svg>@rin_style</div><p class="color">使用カラー：
+MINT</p></div></div>
+        </div>
+        <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
+      </div>
+      <div class="dots"></div>
+      <div class="btn-row"><a href="https://www.instagram.com/" target="_blank" rel="noopener" class="btn btn--line">Instagramでもっと見る <span class="ar">→</span></a></div>
     </div>
-    <div class="carousel" id="ugcCarousel">
-      <div class="ugc-card"><div class="ph"></div><p class="ugc-meta"><b>@kana__</b>使用カラー：PINK BEIGE</p></div>
-      <div class="ugc-card"><div class="ph"></div><p class="ugc-meta"><b>@m_0118</b>使用カラー：SILVER</p></div>
-      <div class="ugc-card"><div class="ph"></div><p class="ugc-meta"><b>@yuu_fashion</b>使用カラー：CAMEL</p></div>
-    </div>
-    <div class="dots" id="ugcDots"></div>
-    <div class="wrap center"><div class="btn-row"><a href="https://www.instagram.com/" target="_blank" rel="noopener" class="btn btn--line">Instagramでもっと見る →</a></div></div>
   </section>
 
-  <!-- 11 FIND YOUR COLOR -->
+  <!-- 11 FIND YOUR COLOR: カラー別商品導線 -->
   <section id="findcolor" class="section center">
     <div class="wrap">
-      <h2 class="h2">FIND YOUR COLOR.</h2>
+      <h2 class="h2">Find Your Color.</h2>
       <p class="lead">お気に入りのカラーを見つけて。</p>
+      <div class="car" data-carousel>
+        <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
+        <div class="track three">
+          <div class="tile"><div class="ph contain has-img"><img src="images/bag-pink-beige.jpg" alt="PINK BEIGE" loading="lazy"></div><p class="lbl">Pink Beige</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/bag-camel.jpg" alt="CAMEL" loading="lazy"></div><p class="lbl">Camel</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/bag-mint.jpg" alt="MINT" loading="lazy"></div><p class="lbl">Mint</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/bag-navy.jpg" alt="NAVY" loading="lazy"></div><p class="lbl">Navy</p></div>
+        </div>
+        <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
+      </div>
+      <div class="dots"></div>
+      <div class="btn-row"><a href="#finalcta" class="btn btn--line">すべてのカラーから選ぶ <span class="ar">→</span></a></div>
     </div>
-    <div class="carousel" id="findColorCarousel">
-      <div class="color-card"><div class="ph"></div><p class="lbl">PINK BEIGE</p></div>
-      <div class="color-card"><div class="ph"></div><p class="lbl">CAMEL</p></div>
-      <div class="color-card"><div class="ph"></div><p class="lbl">MINT</p></div>
-    </div>
-    <div class="dots" id="findColorDots"></div>
-    <div class="wrap center"><div class="btn-row"><a href="#finalcta" class="btn btn--line">すべてのカラーから選ぶ →</a></div></div>
   </section>
 
-  <!-- 12 FINAL CTA -->
-  <section id="finalcta" class="section center">
+  <!-- 12 FINAL CTA: 商品情報＋購入CTA -->
+  <section id="finalcta" class="section">
     <div class="wrap">
       <div class="cta-card">
-        <div class="ph has-img"><img class="ph-prod" src="images/prod-shoulder.jpg" alt="Kawaii Chic Shoulder"></div>
+        <div class="ph contain has-img"><img src="images/bag-pink-beige.jpg" alt="Kawaii Chic Shoulder" loading="lazy"></div>
         <div class="cta-info">
           <h3>Kawaii Chic Shoulder</h3>
-          <p class="cta-price">¥22,000（税込）</p>
+          <p class="cta-price">¥22,000<small>（税込）</small></p>
           <div class="swatches" aria-label="カラーバリエーション">
-            <i style="background:#d9b9ae"></i><i style="background:#9a958d"></i><i style="background:#c9a06a"></i>
-            <i style="background:#8f9a8c"></i><i style="background:#8b9dc9"></i><i style="background:#b7a8d9"></i>
+            <i style="background:#e3c7bc"></i><i style="background:#a9a6a2"></i><i style="background:#c9a883"></i>
+            <i style="background:#9a9c91"></i><i style="background:#8f9dc4"></i><i style="background:#b3a2d3"></i>
             <span class="more">+7</span>
           </div>
           <div class="btn-row">
-            <button class="btn btn--wide" type="button" id="addToCartBtn">カートに追加する →</button>
-            <a href="#intro" class="btn btn--line btn--wide">商品詳細を見る</a>
+            <button class="btn btn--wide" type="button" id="addToCartBtn">カートに追加する <span class="ar">→</span></button>
+            <a href="#intro" class="btn btn--line btn--wide" style="justify-content:center">商品詳細を見る</a>
           </div>
         </div>
       </div>
@@ -501,32 +519,31 @@ Kawaii Chic Shoulderで、
     a.addEventListener('click', function(){ drawer.classList.remove('open'); menuBtn.setAttribute('aria-expanded','false'); });
   });
 
-  // カルーセル: IntersectionObserver でドットを同期
-  function wireCarousel(carousel, dotsEl){
-    if(!carousel || !dotsEl) return;
-    var items = Array.prototype.slice.call(carousel.children);
-    dotsEl.innerHTML = '';
-    items.forEach(function(_, i){
-      var d = document.createElement('i');
-      if(i === 0) d.classList.add('on');
-      dotsEl.appendChild(d);
-    });
-    var dots = Array.prototype.slice.call(dotsEl.children);
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting && e.intersectionRatio > 0.6){
-          var idx = items.indexOf(e.target);
-          dots.forEach(function(d,i){ d.classList.toggle('on', i===idx); });
-        }
-      });
-    }, { root: carousel, threshold: [0.6] });
-    items.forEach(function(el){ io.observe(el); });
-  }
-  wireCarousel(document.getElementById('colorCarousel'), document.getElementById('colorDots'));
-  wireCarousel(document.getElementById('snapCarousel'), document.getElementById('snapDots'));
-  wireCarousel(document.getElementById('inbagCarousel'), document.getElementById('inbagDots'));
-  wireCarousel(document.getElementById('ugcCarousel'), document.getElementById('ugcDots'));
-  wireCarousel(document.getElementById('findColorCarousel'), document.getElementById('findColorDots'));
+  // カルーセル: 矢印で1枚分スクロール、IntersectionObserver でドット同期
+  document.querySelectorAll('[data-carousel]').forEach(function(car){
+    var track = car.querySelector('.track');
+    var items = Array.prototype.slice.call(track.children);
+    var dotsEl = car.nextElementSibling && car.nextElementSibling.classList.contains('dots') ? car.nextElementSibling : null;
+    var dots = [];
+    if(dotsEl){
+      items.forEach(function(_, i){ var d = document.createElement('i'); if(i===0) d.classList.add('on'); dotsEl.appendChild(d); dots.push(d); });
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting && e.intersectionRatio > 0.6){
+            var idx = items.indexOf(e.target);
+            dots.forEach(function(d,i){ d.classList.toggle('on', i===idx); });
+          }
+        });
+      }, { root: track, threshold: [0.6] });
+      items.forEach(function(el){ io.observe(el); });
+    }
+    function step(dir){
+      var w = items[0].getBoundingClientRect().width + 12;
+      track.scrollBy({ left: dir * w, behavior: 'smooth' });
+    }
+    car.querySelector('.prev').addEventListener('click', function(){ step(-1); });
+    car.querySelector('.next').addEventListener('click', function(){ step(1); });
+  });
 
   // PICK YOUR MOOD タブ切替
   var tabs = document.querySelectorAll('.mood-tab');
