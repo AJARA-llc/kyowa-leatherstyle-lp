@@ -70,8 +70,8 @@
   .icon-btn{border:0;background:none;cursor:pointer;color:var(--ink);padding:6px;display:flex;line-height:0}
   .icon-btn svg{width:20px;height:20px}
   .brand{font-weight:500;letter-spacing:.02em;font-size:17px;white-space:nowrap}
-  .drawer{position:fixed;inset:56px 0 0 0;background:var(--paper);z-index:59;transform:translateY(-8px);opacity:0;
-    pointer-events:none;transition:opacity .2s,transform .2s;border-top:1px solid var(--line)}
+  .drawer{position:fixed;top:56px;left:0;right:0;bottom:0;background:#fff;z-index:59;transform:translateY(-8px);opacity:0;
+    pointer-events:none;transition:opacity .2s,transform .2s;border-top:1px solid var(--line);overflow-y:auto}
   .drawer.open{opacity:1;transform:translateY(0);pointer-events:auto}
   .drawer nav{display:flex;flex-direction:column;padding:8px var(--gutter);max-width:var(--maxw);margin:0 auto}
   .drawer nav a{padding:16px 4px;border-bottom:1px solid var(--line);font-size:.95rem}
@@ -188,6 +188,7 @@
     .lead{font-size:18px;margin-bottom:34px}
     .btn{font-size:14px;padding:13px 30px}
     .nav .wrap{height:64px}
+    .drawer{top:64px}
     .brand{font-size:18px}
 
     .hero{max-width:var(--maxw);padding:0 var(--gutter);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:48px;min-height:600px}
@@ -263,16 +264,17 @@
       </button>
     </div>
   </div>
-  <div class="drawer" id="drawer">
-    <nav>
-      <a href="#hero">ホーム</a>
-      <a href="#colorday">カラー一覧</a>
-      <a href="#feature">このバッグについて</a>
-      <a href="#japan">ものづくり</a>
-      <a href="#finalcta">商品詳細・購入</a>
-    </nav>
-  </div>
 </header>
+<!-- ドロワーはヘッダーの外に置く: backdrop-filter を持つ要素の子だと position:fixed の基準がその要素になり、高さ0で背景が描かれない -->
+<div class="drawer" id="drawer">
+  <nav>
+    <a href="#hero">ホーム</a>
+    <a href="#colorday">カラー一覧</a>
+    <a href="#feature">このバッグについて</a>
+    <a href="#japan">ものづくり</a>
+    <a href="#finalcta">商品詳細・購入</a>
+  </nav>
+</div>
 
 <main>
 
