@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="google" content="notranslate" />
+<title>Kawaii Chic Shoulder | Leather Style</title>
+<meta name="description" content="毎日に、わたしらしい色を。15色から選べるKawaii Chic Shoulder。軽くて丈夫、日本のものづくりが息づくバッグ。" />
+<!--
+  Kawaii Chic Shoulder LP — デザインワイヤーフレームに基づく実装イメージ（Shopify Dawn 実装前のプロトタイプ）
+  - モバイルファースト / 全セクション縦スクロール / 一部セクションは横スワイプカルーセル
+  - 画像は全てプレースホルダ（実写真は未確定）。12. FINAL CTA の商品サムネのみ既存カタログ写真を仮使用。
+  - 価格・色数・在庫は仮値。Shopify本実装時に商品データへ差し替え。
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2e2823; --sub:#8c847a; --paper:#ffffff; --cream:#fbf5f1; --line:#f0e4de;
+    --pink:#f0b6ad; --pink-deep:#e18f83; --pink-soft:#fbe6e1;
+    --radius:16px; --maxw:1080px;
+    --font:"Zen Maru Gothic","Poppins","Hiragino Kaku Gothic ProN",system-ui,sans-serif;
+    --display:"Poppins","Zen Maru Gothic",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  @supports not (overflow-x:clip){ html,body{overflow-x:hidden} }
+  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--paper);line-height:1.85;font-weight:400;
+    -webkit-font-smoothing:antialiased;letter-spacing:.01em;word-break:auto-phrase;line-break:strict;overflow-wrap:break-word}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .section{padding:64px 0}
+  .eyebrow{display:block;font-family:var(--display);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pink-deep);margin:0 0 10px;font-weight:600}
+  .h2{font-family:var(--display);font-size:clamp(1.5rem,5vw,2rem);line-height:1.35;margin:0 0 14px;font-weight:700;letter-spacing:.01em;text-wrap:balance}
+  .lead{font-size:.98rem;color:var(--sub);max-width:34ch;font-weight:400;white-space:pre-line}
+  .center{text-align:center}
+  .center .lead{margin-left:auto;margin-right:auto}
+
+  .btn{display:inline-flex;align-items:center;gap:.5em;border:1px solid var(--pink-deep);background:var(--pink);color:#5a2e28;
+    font-family:var(--display);font-weight:600;font-size:.86rem;letter-spacing:.02em;padding:14px 26px;border-radius:999px;
+    cursor:pointer;transition:background .2s,transform .15s;white-space:nowrap}
+  .btn:hover{background:var(--pink-deep);color:#fff;transform:translateY(-1px)}
+  .btn--line{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn--line:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .btn--dark{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+  .btn--dark:hover{background:#fff;color:var(--ink)}
+  .btn--wide{width:100%;justify-content:center}
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap}
+  .center .btn-row{justify-content:center}
+
+  /* 画像プレースホルダ: 実写真差し替え待ちを視覚化（斜め十字） */
+  .ph{position:relative;display:flex;align-items:center;justify-content:center;text-align:center;color:#b9ada3;
+    font-family:var(--display);font-size:.72rem;letter-spacing:.04em;background:var(--cream);border:1px solid var(--line);
+    border-radius:var(--radius);min-height:220px;padding:16px;overflow:hidden}
+  .ph::before{content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(135deg,transparent calc(50% - 1px),var(--line) 50%,transparent calc(50% + 1px)),
+      linear-gradient(45deg,transparent calc(50% - 1px),var(--line) 50%,transparent calc(50% + 1px));
+    opacity:.9;pointer-events:none}
+  .ph span{position:relative;background:rgba(255,255,255,.82);padding:5px 10px;border-radius:999px}
+  .ph.has-img::before{display:none}
+  img.ph-prod{position:relative;object-fit:contain;width:100%;height:100%;background:#fff;padding:20px;border-radius:var(--radius)}
+
+  /* ヘッダー（共通） */
+  .nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+  .nav-left,.nav-right{display:flex;align-items:center;gap:14px}
+  .icon-btn{border:0;background:none;cursor:pointer;color:var(--ink);padding:6px;display:flex;line-height:0}
+  .icon-btn svg{width:22px;height:22px}
+  .brand{font-family:var(--display);font-weight:700;letter-spacing:.1em;font-size:1.02rem;white-space:nowrap}
+  .drawer{position:fixed;inset:64px 0 0 0;background:var(--paper);z-index:59;transform:translateY(-8px);opacity:0;
+    pointer-events:none;transition:opacity .2s,transform .2s;border-top:1px solid var(--line)}
+  .drawer.open{opacity:1;transform:translateY(0);pointer-events:auto}
+  .drawer nav{display:flex;flex-direction:column;padding:8px 20px}
+  .drawer nav a{padding:16px 4px;border-bottom:1px solid var(--line);font-size:.95rem}
+
+  /* 01 HERO */
+  #hero{padding:0}
+  .hero-media{position:relative;min-height:78vh;max-height:640px;display:flex;align-items:flex-end;border-radius:0}
+  .hero-media .ph{position:absolute;inset:0;border-radius:0;border:0;min-height:unset}
+  .hero-media::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(to top,rgba(20,15,12,.72) 0%,rgba(20,15,12,.32) 42%,rgba(20,15,12,0) 68%);pointer-events:none}
+  /* 実写真差し替え後もこのスクリムが下部テキストの可読性を確保する */
+  .hero-inner{position:relative;z-index:1;padding:40px 20px 44px;width:100%}
+  .hero-inner .eyebrow{color:#fff;opacity:.9}
+  .hero-inner h1{font-family:var(--display);color:#fff;font-size:clamp(1.9rem,7vw,2.6rem);font-weight:700;
+    line-height:1.3;margin:0 0 10px;white-space:pre-line;text-wrap:balance}
+  .hero-inner .sub{font-size:.98rem;color:#e9e2db;margin:0 0 22px}
+  .scroll-hint{display:flex;justify-content:center;padding:14px 0 0;color:var(--sub);animation:bob 1.8s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+  /* 02 INTRODUCTION */
+  #intro{background:var(--paper)}
+  #intro .name{font-family:var(--display);font-weight:700;font-size:1.05rem;margin:0 0 4px}
+  #intro .tag{font-size:1.15rem;font-weight:500;margin:0 0 22px}
+  #intro .body{font-size:.96rem;color:var(--sub);white-space:pre-line;max-width:36ch;margin:0 auto 30px}
+  #intro .ph{min-height:320px}
+
+  /* カルーセル 共通 */
+  .carousel{display:flex;gap:16px;overflow-x:auto;padding:8px 20px 18px;margin:0 -20px;scroll-snap-type:x mandatory;
+    overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .carousel::-webkit-scrollbar{display:none}
+  .dots{display:flex;justify-content:center;gap:7px;margin-top:6px}
+  .dots i{width:6px;height:6px;border-radius:50%;background:var(--line);transition:background .2s,transform .2s}
+  .dots i.on{background:var(--pink-deep);transform:scale(1.3)}
+
+  /* 03 COLOR YOUR DAY / 11 FIND YOUR COLOR: 色カード */
+  .color-card{flex:0 0 62vw;max-width:230px;scroll-snap-align:start}
+  .color-card .ph{aspect-ratio:4/5;min-height:unset}
+  .color-card .lbl{margin-top:10px;text-align:center;font-family:var(--display);font-size:.78rem;letter-spacing:.08em;color:var(--ink);font-weight:600}
+  #colorday,#findcolor{background:var(--paper)}
+
+  /* 04 STYLE SNAP */
+  #stylesnap{background:var(--cream)}
+  .snap-card{flex:0 0 84vw;max-width:420px;scroll-snap-align:center}
+  .snap-card .ph{aspect-ratio:4/5;min-height:unset}
+  .snap-cap{margin-top:10px;text-align:center;font-size:.82rem;color:var(--sub)}
+  .snap-cap b{color:var(--ink);font-family:var(--display);letter-spacing:.04em}
+
+  /* 05 PICK YOUR MOOD */
+  #mood{background:var(--paper)}
+  .mood-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:20px 0 6px}
+  .mood-tab{border:1px solid var(--line);background:#fff;color:var(--sub);font-family:var(--display);font-weight:600;
+    font-size:.78rem;letter-spacing:.04em;padding:9px 18px;border-radius:999px;cursor:pointer;transition:.15s}
+  .mood-tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+  .mood-panel{display:none}
+  .mood-panel.active{display:block}
+
+  /* 06 WHAT'S IN MY BAG */
+  #inbag{background:var(--cream)}
+  .inbag-card{flex:0 0 78vw;max-width:340px;scroll-snap-align:center}
+  .inbag-card .ph{aspect-ratio:1/1;min-height:unset}
+  .inbag-cap{margin-top:10px;text-align:center;font-family:var(--display);font-size:.82rem;letter-spacing:.06em;color:var(--sub)}
+
+  /* 07 LIGHT & EASY */
+  #feature{background:var(--paper)}
+  .feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:26px}
+  .feature-card{border:1px solid var(--line);border-radius:var(--radius);padding:24px 14px;text-align:center;background:var(--cream)}
+  .feature-card .ic{width:34px;height:34px;margin:0 auto 12px;color:var(--pink-deep)}
+  .feature-card b{display:block;font-family:var(--display);font-size:.74rem;letter-spacing:.08em;color:var(--ink);margin-bottom:4px}
+  .feature-card span{font-size:.82rem;color:var(--sub)}
+
+  /* 08 DETAILS */
+  #details{background:var(--cream)}
+  #details .main-ph{aspect-ratio:5/4;margin-bottom:16px}
+  .detail-card{flex:0 0 42vw;max-width:170px;scroll-snap-align:start}
+  .detail-card .ph{aspect-ratio:1/1;min-height:unset}
+  .detail-card .lbl{margin-top:8px;text-align:center;font-size:.78rem;color:var(--sub)}
+
+  /* 09 MADE IN JAPAN */
+  #japan{position:relative;background:#25211d;color:#fff;text-align:center;overflow:hidden}
+  #japan .ph{position:absolute;inset:0;border-radius:0;border:0;background:#25211d;opacity:.55;min-height:unset}
+  #japan .wrap{position:relative;padding:80px 20px}
+  #japan .eyebrow{color:var(--pink)}
+  #japan h2{color:#fff}
+  #japan .lead{color:#d8d0c8;margin:0 auto 26px}
+
+  /* 10 SNS / UGC */
+  #ugc{background:var(--paper)}
+  .ugc-card{flex:0 0 60vw;max-width:220px;scroll-snap-align:start}
+  .ugc-card .ph{aspect-ratio:1/1;min-height:unset}
+  .ugc-meta{margin-top:8px;font-size:.78rem;color:var(--sub);text-align:center}
+  .ugc-meta b{display:block;color:var(--ink);font-weight:600}
+
+  /* 12 FINAL CTA */
+  #finalcta{background:var(--cream)}
+  .cta-card{display:flex;gap:22px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px;max-width:520px;margin:0 auto}
+  .cta-card .ph{flex:0 0 120px;aspect-ratio:1/1;min-height:unset}
+  .cta-info{flex:1;min-width:0;text-align:left}
+  .cta-info h3{margin:0 0 4px;font-family:var(--display);font-size:1.05rem;font-weight:700}
+  .cta-price{font-family:var(--display);color:var(--pink-deep);font-size:1.15rem;font-weight:700;margin:0 0 10px}
+  .swatches{display:flex;align-items:center;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+  .swatches i{width:20px;height:20px;border-radius:50%;box-shadow:0 0 0 1px rgba(0,0,0,.06) inset}
+  .swatches .more{font-size:.76rem;color:var(--sub);font-family:var(--display)}
+  #finalcta .btn-row{flex-direction:column;align-items:stretch}
+
+  footer{background:var(--paper);border-top:1px solid var(--line);padding:44px 0 32px;text-align:center;color:var(--sub);font-size:.85rem}
+  footer .brand{color:var(--ink);font-family:var(--display);letter-spacing:.1em;font-size:1.05rem;margin-bottom:14px;font-weight:700}
+  footer .flinks{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;font-size:.82rem;margin-bottom:16px}
+  footer .flinks a:hover{color:var(--ink)}
+  footer .sns{display:flex;justify-content:center;gap:16px;margin-bottom:18px}
+  footer .sns a{color:var(--ink)}
+  footer .sns svg{width:19px;height:19px}
+  footer .fine{opacity:.6;font-size:.75rem}
+
+  @media (min-width:720px){
+    .wrap{padding:0 40px}
+    .section{padding:96px 0}
+    .feature-grid{grid-template-columns:repeat(4,1fr)}
+    .color-card{flex-basis:26vw;max-width:210px}
+    .snap-card{flex-basis:52vw}
+    .inbag-card{flex-basis:38vw}
+    .ugc-card{flex-basis:26vw}
+    .detail-card{flex-basis:20vw}
+    .carousel{padding-left:calc((100vw - var(--maxw) + 80px)/2);padding-right:calc((100vw - var(--maxw) + 80px)/2)}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="nav-left">
+      <button class="icon-btn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      </button>
+    </div>
+    <div class="brand">Leather Style</div>
+    <div class="nav-right">
+      <button class="icon-btn" aria-label="検索">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="カート">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L4 3H2"/><circle cx="9" cy="20" r="1.4" fill="currentColor" stroke="none"/><circle cx="18" cy="20" r="1.4" fill="currentColor" stroke="none"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="drawer" id="drawer">
+    <nav>
+      <a href="#hero">ホーム</a>
+      <a href="#colorday">カラー一覧</a>
+      <a href="#feature">このバッグについて</a>
+      <a href="#japan">ものづくり</a>
+      <a href="#finalcta">商品詳細・購入</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- 01 HERO -->
+  <section id="hero">
+    <div class="hero-media">
+      <div class="ph"><span>HERO PHOTO</span></div>
+      <div class="hero-inner wrap">
+        <span class="eyebrow">Kawaii Chic Shoulder</span>
+        <h1>毎日に、<br>わたしらしい色を。</h1>
+        <p class="sub">15色から選べる、軽くて頼れるショルダーバッグ。</p>
+        <div class="btn-row">
+          <a href="#finalcta" class="btn">商品を見る →</a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </section>
+
+  <!-- 02 INTRODUCTION -->
+  <section id="intro" class="section center">
+    <div class="wrap">
+      <p class="name">Kawaii Chic Shoulder</p>
+      <p class="tag">毎日に、わたしらしい色を。</p>
+      <p class="body">どんな日も、どんなコーデも。
+15の色が、あなたの毎日をちょっと特別にする。
+持つたびに、気分が上がる。
+Kawaii Chic Shoulderで、
+新しいわたしに出会ってみませんか。</p>
+      <div class="ph"><span>LIFESTYLE PHOTO</span></div>
+    </div>
+  </section>
+
+  <!-- 03 COLOR YOUR DAY -->
+  <section id="colorday" class="section center">
+    <div class="wrap">
+      <span class="eyebrow">Color Your Day</span>
+      <h2 class="h2">COLOR YOUR DAY.</h2>
+      <p class="lead">気分も、コーデも、色で変わる。</p>
+    </div>
+    <div class="carousel" id="colorCarousel" data-dots="colorDots">
+      <div class="color-card"><div class="ph" style="background:#e8c9c0"><span>PINK BEIGE</span></div><p class="lbl">PINK BEIGE</p></div>
+      <div class="color-card"><div class="ph" style="background:#c9986a"><span>CAMEL</span></div><p class="lbl">CAMEL</p></div>
+      <div class="color-card"><div class="ph" style="background:#b7d9c9"><span>MINT</span></div><p class="lbl">MINT</p></div>
+      <div class="color-card"><div class="ph" style="background:#f2b9c4"><span>MACARON PINK</span></div><p class="lbl">MACARON PINK</p></div>
+      <div class="color-card"><div class="ph" style="background:#b7a4c9"><span>SUMIRE</span></div><p class="lbl">SUMIRE</p></div>
+    </div>
+    <div class="dots" id="colorDots"></div>
+    <div class="wrap center"><div class="btn-row"><a href="#finalcta" class="btn btn--line">すべての色を見る →</a></div></div>
+  </section>
+
+  <!-- 04 STYLE SNAP -->
+  <section id="stylesnap" class="section center">
+    <div class="wrap">
+      <span class="eyebrow">Style Snap</span>
+      <h2 class="h2">STYLE SNAP</h2>
+      <p class="lead">わたしらしい、持ち方を見つけて。</p>
+    </div>
+    <div class="carousel" id="snapCarousel">
+      <div class="snap-card"><div class="ph"><span>MODEL SNAP 1</span></div><p class="snap-cap"><b>PINK BEIGE</b> ・ Soft &amp; Feminine</p></div>
+      <div class="snap-card"><div class="ph"><span>MODEL SNAP 2</span></div><p class="snap-cap"><b>CAMEL</b> ・ Casual Mode</p></div>
+      <div class="snap-card"><div class="ph"><span>MODEL SNAP 3</span></div><p class="snap-cap"><b>MINT</b> ・ Fresh Natural</p></div>
+      <div class="snap-card"><div class="ph"><span>MODEL SNAP 4</span></div><p class="snap-cap"><b>SUMIRE</b> ・ Elegant Mood</p></div>
+    </div>
+    <div class="dots" id="snapDots"></div>
+  </section>
+
+  <!-- 05 PICK YOUR MOOD -->
+  <section id="mood" class="section center">
+    <div class="wrap">
+      <span class="eyebrow">Pick Your Mood</span>
+      <h2 class="h2">PICK YOUR MOOD.</h2>
+      <p class="lead">今日の気分で、選ぶ。</p>
+      <div class="mood-tabs" role="tablist" aria-label="ムードで選ぶ">
+        <button class="mood-tab" role="tab" aria-selected="true" data-mood="sweet">SWEET</button>
+        <button class="mood-tab" role="tab" aria-selected="false" data-mood="natural">NATURAL</button>
+        <button class="mood-tab" role="tab" aria-selected="false" data-mood="mode">MODE</button>
+        <button class="mood-tab" role="tab" aria-selected="false" data-mood="others">OTHERS</button>
+      </div>
+    </div>
+
+    <div class="mood-panel active" id="mood-sweet">
+      <div class="carousel">
+        <div class="color-card"><div class="ph" style="background:#e8c9c0"><span>PINK BEIGE</span></div><p class="lbl">PINK BEIGE</p></div>
+        <div class="color-card"><div class="ph" style="background:#f2b9c4"><span>MACARON PINK</span></div><p class="lbl">MACARON PINK</p></div>
+        <div class="color-card"><div class="ph" style="background:#b7a4c9"><span>SUMIRE</span></div><p class="lbl">SUMIRE</p></div>
+      </div>
+    </div>
+    <div class="mood-panel" id="mood-natural">
+      <div class="carousel">
+        <div class="color-card"><div class="ph" style="background:#a9b79a"><span>SAGE</span></div><p class="lbl">SAGE</p></div>
+        <div class="color-card"><div class="ph" style="background:#d9c7ab"><span>BEIGE</span></div><p class="lbl">BEIGE</p></div>
+        <div class="color-card"><div class="ph" style="background:#c9986a"><span>CAMEL</span></div><p class="lbl">CAMEL</p></div>
+      </div>
+    </div>
+    <div class="mood-panel" id="mood-mode">
+      <div class="carousel">
+        <div class="color-card"><div class="ph" style="background:#2b2622;color:#e8e0d8"><span>BLACK</span></div><p class="lbl">BLACK</p></div>
+        <div class="color-card"><div class="ph" style="background:#3c4a63;color:#e8e0d8"><span>NAVY</span></div><p class="lbl">NAVY</p></div>
+        <div class="color-card"><div class="ph" style="background:#9a958d"><span>GRAY</span></div><p class="lbl">GRAY</p></div>
+      </div>
+    </div>
+    <div class="mood-panel" id="mood-others">
+      <div class="carousel">
+        <div class="color-card"><div class="ph" style="background:#b7d9c9"><span>MINT</span></div><p class="lbl">MINT</p></div>
+        <div class="color-card"><div class="ph" style="background:#c8c5c0"><span>SILVER</span></div><p class="lbl">SILVER</p></div>
+        <div class="color-card"><div class="ph" style="background:#8a4a52;color:#f3e6e6"><span>WINE</span></div><p class="lbl">WINE</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 WHAT'S IN MY BAG -->
+  <section id="inbag" class="section center">
+    <div class="wrap">
+      <span class="eyebrow">What's In My Bag?</span>
+      <h2 class="h2">WHAT'S IN MY BAG?</h2>
+      <p class="lead">見た目以上に、ちゃんと入る。</p>
+    </div>
+    <div class="carousel" id="inbagCarousel">
+      <div class="inbag-card"><div class="ph"><span>入れるもの一覧</span></div><p class="inbag-cap">入れるもの</p></div>
+      <div class="inbag-card"><div class="ph"><span>収納した状態</span></div><p class="inbag-cap">収納後</p></div>
+    </div>
+    <div class="dots" id="inbagDots"></div>
+  </section>
+
+  <!-- 07 LIGHT & EASY -->
+  <section id="feature" class="section center">
+    <div class="wrap">
+      <span class="eyebrow">Light &amp; Easy</span>
+      <h2 class="h2">LIGHT &amp; EASY.</h2>
+      <p class="lead">毎日使いたくなる、4つの理由。</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2c-3 4-3 7 0 10s3 6 0 10"/></svg>
+          <b>LIGHT</b><span>軽い</span>
+        </div>
+        <div class="feature-card">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2c4 5 7 9 7 12a7 7 0 0 1-14 0c0-3 3-7 7-12z"/></svg>
+          <b>WATER RESISTANT</b><span>水に強い</span>
+        </div>
+        <div class="feature-card">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+          <b>DURABLE</b><span>丈夫</span>
+        </div>
+        <div class="feature-card">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 13l4 4L19 7"/></svg>
+          <b>EASY CARE</b><span>お手入れ簡単</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 DETAILS -->
+  <section id="details" class="section center">
+    <div class="wrap">
+      <span class="eyebrow">Details</span>
+      <h2 class="h2">DETAILS</h2>
+      <p class="lead">細部まで、こだわりを。</p>
+      <div class="ph main-ph"><span>ディテール メイン写真</span></div>
+    </div>
+    <div class="carousel" id="detailCarousel">
+      <div class="detail-card"><div class="ph"><span>金具</span></div><p class="lbl">金具</p></div>
+      <div class="detail-card"><div class="ph"><span>ステッチ</span></div><p class="lbl">ステッチ</p></div>
+      <div class="detail-card"><div class="ph"><span>素材</span></div><p class="lbl">素材</p></div>
+      <div class="detail-card"><div class="ph"><span>内側</span></div><p class="lbl">内側</p></div>
+    </div>
+  </section>
+
+  <!-- 09 MADE IN JAPAN -->
+  <section id="japan">
+    <div class="ph"><span></span></div>
+    <div class="wrap center">
+      <span class="eyebrow">Made In Japan</span>
+      <h2 class="h2">MADE IN JAPAN</h2>
+      <p class="lead">日本のものづくりを、
+あなたの日々に。</p>
+      <p class="lead">ひとつひとつ、丁寧に。
+日本の職人が仕立てる、
+長く愛せるバッグです。</p>
+      <div class="btn-row"><a href="#feature" class="btn btn--dark">ものづくりについて見る →</a></div>
+    </div>
+  </section>
+
+  <!-- 10 SNS / UGC -->
+  <section id="ugc" class="section center">
+    <div class="wrap">
+      <span class="eyebrow">Real Voices</span>
+      <h2 class="h2">REAL VOICES.</h2>
+      <p class="lead">みんなの「かわいい」をシェア。</p>
+    </div>
+    <div class="carousel" id="ugcCarousel">
+      <div class="ugc-card"><div class="ph"><span>投稿写真</span></div><p class="ugc-meta"><b>@kana__</b>使用カラー：PINK BEIGE</p></div>
+      <div class="ugc-card"><div class="ph"><span>投稿写真</span></div><p class="ugc-meta"><b>@m_0118</b>使用カラー：SILVER</p></div>
+      <div class="ugc-card"><div class="ph"><span>投稿写真</span></div><p class="ugc-meta"><b>@yuu_fashion</b>使用カラー：CAMEL</p></div>
+    </div>
+    <div class="dots" id="ugcDots"></div>
+    <div class="wrap center"><div class="btn-row"><a href="https://www.instagram.com/" target="_blank" rel="noopener" class="btn btn--line">Instagramでもっと見る →</a></div></div>
+  </section>
+
+  <!-- 11 FIND YOUR COLOR -->
+  <section id="findcolor" class="section center">
+    <div class="wrap">
+      <span class="eyebrow">Find Your Color</span>
+      <h2 class="h2">FIND YOUR COLOR.</h2>
+      <p class="lead">お気に入りのカラーを見つけて。</p>
+    </div>
+    <div class="carousel" id="findColorCarousel">
+      <div class="color-card"><div class="ph" style="background:#e8c9c0"><span>PINK BEIGE</span></div><p class="lbl">PINK BEIGE</p></div>
+      <div class="color-card"><div class="ph" style="background:#c9986a"><span>CAMEL</span></div><p class="lbl">CAMEL</p></div>
+      <div class="color-card"><div class="ph" style="background:#b7d9c9"><span>MINT</span></div><p class="lbl">MINT</p></div>
+    </div>
+    <div class="dots" id="findColorDots"></div>
+    <div class="wrap center"><div class="btn-row"><a href="#finalcta" class="btn btn--line">すべてのカラーから選ぶ →</a></div></div>
+  </section>
+
+  <!-- 12 FINAL CTA -->
+  <section id="finalcta" class="section center">
+    <div class="wrap">
+      <div class="cta-card">
+        <div class="ph has-img"><img class="ph-prod" src="images/prod-shoulder.jpg" alt="Kawaii Chic Shoulder"></div>
+        <div class="cta-info">
+          <h3>Kawaii Chic Shoulder</h3>
+          <p class="cta-price">¥22,000（税込）</p>
+          <div class="swatches" aria-label="カラーバリエーション 全15色">
+            <i style="background:#e8c9c0"></i><i style="background:#c9986a"></i><i style="background:#b7d9c9"></i>
+            <i style="background:#f2b9c4"></i><i style="background:#b7a4c9"></i><i style="background:#2b2622"></i>
+            <span class="more">+9</span>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn--wide" type="button" id="addToCartBtn">カートに追加する →</button>
+            <a href="#intro" class="btn btn--line btn--wide">商品詳細を見る</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="brand">Leather Style</p>
+    <div class="flinks">
+      <a href="#intro">About</a>
+      <a href="#ugc">News</a>
+      <a href="#">FAQ</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="sns">
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3c.4 2 2 3.6 4 4v3c-1.5 0-2.9-.4-4-1.2V15a5 5 0 1 1-5-5c.3 0 .7 0 1 .1v3.1a2 2 0 1 0 1 1.7V3z"/></svg></a>
+      <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M11 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg></a>
+    </div>
+    <p class="fine">&copy; Leather Style. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // ハンバーガーメニュー
+  var menuBtn = document.getElementById('menuBtn');
+  var drawer = document.getElementById('drawer');
+  menuBtn.addEventListener('click', function(){
+    var open = drawer.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  drawer.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ drawer.classList.remove('open'); menuBtn.setAttribute('aria-expanded','false'); });
+  });
+
+  // カルーセル: IntersectionObserver でドットを同期
+  function wireCarousel(carousel, dotsEl){
+    if(!carousel || !dotsEl) return;
+    var items = Array.prototype.slice.call(carousel.children);
+    dotsEl.innerHTML = '';
+    items.forEach(function(_, i){
+      var d = document.createElement('i');
+      if(i === 0) d.classList.add('on');
+      dotsEl.appendChild(d);
+    });
+    var dots = Array.prototype.slice.call(dotsEl.children);
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting && e.intersectionRatio > 0.6){
+          var idx = items.indexOf(e.target);
+          dots.forEach(function(d,i){ d.classList.toggle('on', i===idx); });
+        }
+      });
+    }, { root: carousel, threshold: [0.6] });
+    items.forEach(function(el){ io.observe(el); });
+  }
+  wireCarousel(document.getElementById('colorCarousel'), document.getElementById('colorDots'));
+  wireCarousel(document.getElementById('snapCarousel'), document.getElementById('snapDots'));
+  wireCarousel(document.getElementById('inbagCarousel'), document.getElementById('inbagDots'));
+  wireCarousel(document.getElementById('ugcCarousel'), document.getElementById('ugcDots'));
+  wireCarousel(document.getElementById('findColorCarousel'), document.getElementById('findColorDots'));
+
+  // PICK YOUR MOOD タブ切替
+  var tabs = document.querySelectorAll('.mood-tab');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.setAttribute('aria-selected', 'false'); });
+      tab.setAttribute('aria-selected', 'true');
+      document.querySelectorAll('.mood-panel').forEach(function(p){ p.classList.remove('active'); });
+      var panel = document.getElementById('mood-' + tab.getAttribute('data-mood'));
+      if(panel) panel.classList.add('active');
+    });
+  });
+
+  // カートに追加する（プロトタイプ: Shopify 実装前のためデモ動作）
+  document.getElementById('addToCartBtn').addEventListener('click', function(){
+    alert('デモ: Shopify実装時にカート追加処理を接続します。');
+  });
+</script>
+</body>
+</html>
