@@ -33,21 +33,22 @@
   a{color:inherit;text-decoration:none}
   button{font-family:inherit;font-size:inherit;color:inherit}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
-  .section{padding:44px 0 40px}
-  .h2{font-size:clamp(1.35rem,4.6vw,1.6rem);line-height:1.3;margin:0 0 6px;font-weight:500;letter-spacing:.02em;text-transform:uppercase}
-  .lead{font-size:.9rem;color:var(--ink);margin:0 0 20px;white-space:pre-line}
+  .section{padding:36px 0 28px}
+  /* 型のスケールはワイヤーフレームの実測（294px幅の端末枠→390pxに換算）に合わせている */
+  .h2{font-size:28px;line-height:1.25;margin:0 0 8px;font-weight:400;letter-spacing:.02em;text-transform:uppercase}
+  .lead{font-size:17px;color:var(--ink);margin:0 0 26px;white-space:pre-line;line-height:1.6}
   .center{text-align:center}
 
   /* ボタン: 角丸長方形（ピルはタブのみ） */
-  .btn{display:inline-flex;align-items:center;justify-content:space-between;gap:1.4em;border:1px solid var(--pink);background:var(--pink);color:#fff;
-    font-weight:500;font-size:.82rem;letter-spacing:.02em;padding:11px 22px;border-radius:var(--radius);cursor:pointer;
+  .btn{display:inline-flex;align-items:center;justify-content:space-between;gap:1.6em;border:1px solid var(--pink);background:var(--pink);color:#fff;
+    font-weight:500;font-size:13px;letter-spacing:.02em;padding:10px 24px;border-radius:var(--radius);cursor:pointer;
     transition:background .2s,border-color .2s;white-space:nowrap;line-height:1.4}
   .btn:hover{background:var(--pink-deep);border-color:var(--pink-deep)}
   .btn--line{background:#fff;color:var(--ink);border-color:#cfcbc6}
   .btn--line:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
   .btn--wide{width:100%}
   .btn .ar{font-weight:400}
-  .btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
   .center .btn-row{justify-content:center}
 
   /* 画像枠。実画像は .has-img、未撮影は斜め十字のプレースホルダ */
@@ -68,7 +69,7 @@
   .nav-right{justify-content:flex-end}
   .icon-btn{border:0;background:none;cursor:pointer;color:var(--ink);padding:6px;display:flex;line-height:0}
   .icon-btn svg{width:20px;height:20px}
-  .brand{font-weight:500;letter-spacing:.02em;font-size:.98rem;white-space:nowrap}
+  .brand{font-weight:500;letter-spacing:.02em;font-size:17px;white-space:nowrap}
   .drawer{position:fixed;inset:56px 0 0 0;background:var(--paper);z-index:59;transform:translateY(-8px);opacity:0;
     pointer-events:none;transition:opacity .2s,transform .2s;border-top:1px solid var(--line)}
   .drawer.open{opacity:1;transform:translateY(0);pointer-events:auto}
@@ -79,17 +80,17 @@
   .hero{position:relative;max-width:var(--maxw);margin:0 auto}
   .hero .ph{aspect-ratio:1/1.04}
   .hero .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(255,255,255,.55),rgba(255,255,255,0) 55%);pointer-events:none}
-  .hero-copy{position:absolute;left:0;right:0;top:40%;padding:0 var(--gutter)}
-  .hero-copy h1{font-size:clamp(1.6rem,6.4vw,2.2rem);line-height:1.35;margin:0 0 6px;font-weight:700;letter-spacing:.01em}
-  .hero-copy .sub{font-size:.95rem;margin:0 0 16px}
-  .hero-copy .btn{padding:10px 18px}
+  .hero-copy{position:absolute;left:0;right:0;top:37%;padding:0 var(--gutter)}
+  .hero-copy h1{font-size:32px;line-height:1.2;margin:0 0 10px;font-weight:700;letter-spacing:.01em}
+  .hero-copy .sub{font-size:19px;margin:0 0 18px;line-height:1.3}
+  .hero-copy .btn{padding:11px 20px;min-width:146px}
   .chev{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;color:var(--ink);pointer-events:none}
   .chev svg{width:18px;height:18px}
 
   /* 02 INTRODUCTION */
-  #intro .name{font-size:1.02rem;margin:0}
-  #intro .tag{font-size:1.02rem;font-weight:500;margin:0 0 18px}
-  #intro .body{font-size:.86rem;white-space:pre-line;margin:0 auto 24px;line-height:2}
+  #intro .name{font-size:21px;margin:0;line-height:1.5}
+  #intro .tag{font-size:21px;font-weight:500;margin:0 0 20px;line-height:1.5}
+  #intro .body{font-size:15.5px;white-space:pre-line;margin:0 auto 26px;line-height:1.7}
   #intro .ph{aspect-ratio:2/1}
   #intro .chev2{display:flex;justify-content:center;padding-top:14px;color:var(--ink)}
   #intro .chev2 svg{width:18px;height:18px}
@@ -106,80 +107,141 @@
     display:flex;align-items:center;justify-content:center;padding:0}
   .arrow svg{width:16px;height:16px}
   .arrow.prev{left:0}.arrow.next{right:0}
-  .dots{display:flex;justify-content:center;gap:8px;margin-top:16px}
+  .dots{display:flex;justify-content:center;gap:8px;margin-top:24px}
   .dots i{width:6px;height:6px;border-radius:50%;background:#d6d3ce}
   .dots i.on{background:var(--ink)}
 
   /* 色タイル（03 / 05 / 11） */
   .tile .ph{aspect-ratio:1/1}
-  .tile .lbl{margin:8px 0 0;text-align:center;font-size:.68rem;letter-spacing:.04em;text-transform:uppercase}
+  .tile .lbl{margin:10px 0 0;text-align:center;font-size:11px;letter-spacing:.04em;text-transform:uppercase}
 
   /* 04 STYLE SNAP */
   .snap .ph{aspect-ratio:5/4}
-  .snap-cap{margin:12px 0 0;text-align:center;font-size:.76rem;line-height:1.7}
+  .snap-cap{margin:14px 0 0;text-align:center;font-size:13px;line-height:1.5}
   .snap-cap b{display:block;font-weight:700;letter-spacing:.04em}
 
   /* 05 PICK YOUR MOOD */
-  .mood-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:0 0 18px}
-  .mood-tab{border:1px solid transparent;background:var(--panel);color:var(--sub);font-weight:500;font-size:.72rem;
-    letter-spacing:.06em;padding:8px 16px;border-radius:999px;cursor:pointer;transition:.15s}
+  .mood-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:0 0 22px}
+  .mood-tab{border:1px solid transparent;background:var(--panel);color:var(--sub);font-weight:500;font-size:13px;
+    letter-spacing:.06em;padding:9px 18px;border-radius:999px;cursor:pointer;transition:.15s}
   .mood-tab[aria-selected="true"]{background:var(--pink);color:#fff}
   .mood-panel{display:none}
   .mood-panel.active{display:block}
 
   /* 06 WHAT'S IN MY BAG */
   .inbag .ph{aspect-ratio:1/1}
-  .inbag .cap{margin:0;background:var(--panel);text-align:center;font-size:.78rem;padding:8px 4px}
+  .inbag .cap{margin:0;background:var(--panel);text-align:center;font-size:13px;padding:9px 4px}
 
   /* 07 LIGHT & EASY */
   .feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-  .feature-card{border:1px solid var(--line);border-radius:var(--radius);padding:18px 6px 16px;text-align:center;background:#fff}
-  .feature-card .ic{width:30px;height:30px;margin:0 auto 10px;color:var(--ink)}
-  .feature-card b{display:block;font-size:.62rem;letter-spacing:.06em;font-weight:600;line-height:1.4;margin-bottom:4px}
-  .feature-card span{font-size:.74rem}
+  .feature-card{border:1px solid var(--line);border-radius:var(--radius);padding:20px 6px 18px;text-align:center;background:#fff}
+  .feature-card .ic{width:32px;height:32px;margin:0 auto 12px;color:var(--ink)}
+  .feature-card b{display:block;font-size:11px;letter-spacing:.06em;font-weight:600;line-height:1.4;margin-bottom:6px}
+  .feature-card span{font-size:13px}
 
   /* 08 DETAILS */
   #details .main .ph{aspect-ratio:2/1;margin-bottom:12px}
   .detail-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
   .detail-grid .ph{aspect-ratio:1/1}
-  .detail-grid .lbl{margin:8px 0 0;text-align:center;font-size:.74rem}
+  .detail-grid .lbl{margin:10px 0 0;text-align:center;font-size:13px}
 
   /* 09 MADE IN JAPAN */
   #japan .banner{position:relative}
   #japan .banner .ph{aspect-ratio:2/1}
   #japan .banner .ph::after{content:"";position:absolute;inset:0;background:rgba(40,36,33,.35)}
   #japan .ov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:0 16px}
-  #japan .ov .en{font-size:.92rem;letter-spacing:.14em;margin:0 0 10px;opacity:.9}
-  #japan .ov .jp{font-size:clamp(1.05rem,3.8vw,1.3rem);line-height:1.6;margin:0;white-space:pre-line;font-weight:500}
-  #japan .body{font-size:.86rem;line-height:2;margin:18px 0 0;white-space:pre-line;text-align:left}
+  #japan .ov .en{font-size:20px;letter-spacing:.14em;margin:0 0 14px;opacity:.9;line-height:1.2}
+  #japan .ov .jp{font-size:21px;line-height:1.55;margin:0;white-space:pre-line;font-weight:500}
+  #japan .body{font-size:15px;line-height:1.8;margin:24px 0 0;white-space:pre-line;text-align:left}
 
   /* 10 SNS / UGC */
   .ugc .ph{aspect-ratio:1/1}
-  .ugc-meta{margin:8px 0 0;font-size:.7rem;line-height:1.6;text-align:left}
-  .ugc-meta .handle{display:flex;align-items:center;gap:5px;color:var(--sub);margin-bottom:6px}
-  .ugc-meta .handle svg{width:14px;height:14px;flex:0 0 auto}
-  .ugc-meta .color{font-size:.74rem;white-space:pre-line}
+  .ugc-meta{margin:10px 0 0;font-size:11px;line-height:1.6;text-align:left}
+  .ugc-meta .handle{display:flex;align-items:center;gap:5px;color:var(--sub);margin-bottom:8px}
+  .ugc-meta .handle svg{width:15px;height:15px;flex:0 0 auto}
+  .ugc-meta .color{font-size:12px;white-space:pre-line;line-height:1.5}
 
   /* 12 FINAL CTA */
   .cta-card{display:grid;grid-template-columns:42% 1fr;gap:18px;align-items:start}
   .cta-card .ph{aspect-ratio:1/1}
-  .cta-info h3{margin:0 0 6px;font-size:1rem;font-weight:500}
-  .cta-price{font-size:1.05rem;font-weight:500;margin:0 0 12px}
-  .cta-price small{font-size:.7rem;color:var(--sub);font-weight:400;margin-left:.4em}
-  .swatches{display:flex;align-items:center;gap:7px;margin-bottom:16px;flex-wrap:wrap}
+  .cta-info h3{margin:0 0 8px;font-size:18px;font-weight:500;line-height:1.4}
+  .cta-price{font-size:20px;font-weight:500;margin:0 0 14px;line-height:1.3}
+  .cta-price small{font-size:12px;color:var(--sub);font-weight:400;margin-left:.4em}
+  .swatches{display:flex;align-items:center;gap:7px;margin-bottom:18px;flex-wrap:wrap}
   .swatches i{width:18px;height:18px;border-radius:50%;box-shadow:0 0 0 1px rgba(0,0,0,.06) inset}
-  .swatches .more{width:22px;height:22px;border-radius:50%;background:var(--panel);font-size:.6rem;display:flex;align-items:center;justify-content:center}
+  .swatches .more{width:22px;height:22px;border-radius:50%;background:var(--panel);font-size:10px;display:flex;align-items:center;justify-content:center}
   .cta-info .btn-row{flex-direction:column;margin-top:0}
 
-  footer{border-top:1px solid var(--line);padding:32px 0 28px;text-align:center;font-size:.78rem;color:var(--sub)}
-  footer .brand{color:var(--ink);font-size:.98rem;margin:0 0 14px;font-weight:600}
-  footer .flinks{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:16px;color:var(--ink)}
+  footer{border-top:1px solid var(--line);padding:32px 0 28px;text-align:center;font-size:13px;color:var(--sub)}
+  footer .brand{color:var(--ink);font-size:17px;margin:0 0 14px;font-weight:600}
+  footer .flinks{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-bottom:16px;color:var(--ink)}
   footer .sns{display:flex;justify-content:center;gap:18px;margin-bottom:16px}
   footer .sns a{color:var(--ink);line-height:0}
   footer .sns svg{width:18px;height:18px}
-  footer .fine{margin:0;font-size:.68rem}
+  footer .fine{margin:0;font-size:11px}
 
-  .alt{background:var(--paper)}
+  /* ===== PC（モバイルの型・余白を1.15倍前後に拡大し、ヒーローは2カラム、カルーセルは列数を増やす） ===== */
+  @media (min-width:900px){
+    :root{--maxw:1040px;--gutter:40px}
+    .section{padding:72px 0 56px}
+    .h2{font-size:34px;margin-bottom:10px}
+    .lead{font-size:18px;margin-bottom:34px}
+    .btn{font-size:14px;padding:13px 30px}
+    .nav .wrap{height:64px}
+    .brand{font-size:18px}
+
+    .hero{max-width:var(--maxw);padding:0 var(--gutter);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:48px;min-height:600px}
+    .hero .ph{aspect-ratio:1/1.04;order:2;max-height:640px}
+    .hero .ph::after{display:none}
+    .hero-copy{position:static;padding:0}
+    .hero-copy h1{font-size:44px;margin-bottom:14px}
+    .hero-copy .sub{font-size:22px;margin-bottom:26px}
+    .chev{display:none}
+
+    #intro .wrap{max-width:820px}
+    #intro .name,#intro .tag{font-size:24px}
+    #intro .body{font-size:17px}
+    #intro .ph{aspect-ratio:2/1}
+
+    .car{padding:0 36px}
+    .track{gap:20px}
+    .track.three>*{flex-basis:calc((100% - 80px)/5)}
+    .track:not(.three):not(.two)>*{flex-basis:calc((100% - 20px)/2)}
+    .track.two>*{flex-basis:calc((100% - 20px)/2)}
+    .arrow{width:36px}
+    .arrow svg{width:20px;height:20px}
+    .tile .lbl{font-size:12px}
+    .snap-cap{font-size:14px}
+    .mood-tab{font-size:14px;padding:10px 22px}
+
+    .feature-grid{gap:16px;max-width:820px;margin:0 auto}
+    .feature-card{padding:28px 10px 24px}
+    .feature-card .ic{width:36px;height:36px}
+    .feature-card b{font-size:12px}
+    .feature-card span{font-size:14px}
+
+    #details .wrap{max-width:900px}
+    .detail-grid{gap:16px}
+    .detail-grid .lbl{font-size:14px}
+
+    #japan .wrap{max-width:900px}
+    #japan .banner .ph{aspect-ratio:2.4/1}
+    #japan .ov .en{font-size:24px}
+    #japan .ov .jp{font-size:28px}
+    #japan .body{font-size:16px;text-align:center;margin-top:30px}
+
+    .track.three .ugc{flex-basis:calc((100% - 60px)/4)}
+    .ugc-meta{font-size:12px}
+    .ugc-meta .color{font-size:13px}
+
+    #finalcta .wrap{max-width:820px}
+    .cta-card{grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+    .cta-info h3{font-size:22px}
+    .cta-price{font-size:24px}
+    .swatches i{width:22px;height:22px}
+
+    footer{padding:48px 0 40px}
+  }
 </style>
 </head>
 <body>
@@ -538,7 +600,7 @@ MINT</p></div></div>
       items.forEach(function(el){ io.observe(el); });
     }
     function step(dir){
-      var w = items[0].getBoundingClientRect().width + 12;
+      var w = items[0].getBoundingClientRect().width + (parseFloat(getComputedStyle(track).columnGap) || 12);
       track.scrollBy({ left: dir * w, behavior: 'smooth' });
     }
     car.querySelector('.prev').addEventListener('click', function(){ step(-1); });
