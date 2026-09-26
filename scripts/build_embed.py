@@ -109,6 +109,7 @@ def main():
      touches other pages. Generated from index.html by scripts/build_embed.py — edit the source, not this file. -->
 <div class="kcs" id="kcs-root" translate="no">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
 .kcs{{margin:0;padding:0;font-family:"Inter","Noto Sans JP","Hiragino Kaku Gothic ProN",system-ui,sans-serif;color:#1f1d1b;background:#fff;line-height:1.8;font-weight:400;letter-spacing:.01em;word-break:auto-phrase;line-break:strict;overflow-wrap:break-word;overflow-x:clip;-webkit-font-smoothing:antialiased}}
 .kcs *,.kcs *::before,.kcs *::after{{box-sizing:border-box}}
 .kcs img{{max-width:100%;display:block;height:auto;border:0;border-radius:0;box-shadow:none}}
