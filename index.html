@@ -79,7 +79,9 @@
   /* 01 HERO */
   .hero{position:relative;max-width:var(--maxw);margin:0 auto}
   .hero .ph{aspect-ratio:1/1.04}
-  .hero .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(255,255,255,.55),rgba(255,255,255,0) 55%);pointer-events:none}
+  /* 白スモーク: 画像全体に薄く、コピーが乗る下半分は強めにかけて可読性を確保 */
+  .hero .ph::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(to top,rgba(255,255,255,.78) 0%,rgba(255,255,255,.62) 40%,rgba(255,255,255,.36) 70%,rgba(255,255,255,.28) 100%)}
   .hero-copy{position:absolute;left:0;right:0;top:37%;padding:0 var(--gutter)}
   .hero-copy h1{font-size:32px;line-height:1.2;margin:0 0 10px;font-weight:700;letter-spacing:.01em}
   .hero-copy .sub{font-size:19px;margin:0 0 18px;line-height:1.3}
