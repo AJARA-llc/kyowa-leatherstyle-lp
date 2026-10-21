@@ -526,17 +526,25 @@ root.querySelectorAll('[data-carousel]').forEach(function(car){
     });
   });
 
-  // カート追加: 色名 -> バリアントID。Shopify管理画面の「商品 > バリエーション」の各IDをここに入れる。
-  // 空のままなら「商品詳細を見る」と同じ商品ページへ移動する。
+  // カート追加: 色名(スウォッチの data-name と同じ表記) -> バリアントID。
+  // Shopify管理画面の「商品 > バリエーション」で各色を開き、URLの variant= の数字をここに入れる。
+  // その色がまだ空欄なら、カートに追加する代わりに商品ページへ移動する（フォールバック）。
   var KCS_VARIANTS = {
-    // "PINK BEIGE": 12345678901234,
+    // "Black": 12345678901234,
   };
   var KCS_PRODUCT_URL = "/products/kawaii-chic-shoulder";
   var form = root.querySelector('#kcs-cart-form');
   if(form){
     var idInput = form.querySelector('[data-kcs-variant]');
-    var first = Object.keys(KCS_VARIANTS)[0];
-    if(first) idInput.value = KCS_VARIANTS[first];
+    function kcsSyncVariant(){
+      var picked = root.querySelector('#kcs-ctaSwatches .swatch.on');
+      var name = picked && picked.getAttribute('data-name');
+      idInput.value = (name && KCS_VARIANTS[name]) || '';
+    }
+    root.querySelectorAll('#kcs-ctaSwatches .swatch').forEach(function(sw){
+      sw.addEventListener('click', kcsSyncVariant);
+    });
+    kcsSyncVariant(); // set from whichever swatch starts selected
     form.addEventListener('submit', function(e){
       if(!idInput.value){ e.preventDefault(); location.href = KCS_PRODUCT_URL; }
     });
