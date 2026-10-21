@@ -86,7 +86,10 @@ def main():
     main_html = re.sub(r'\bid="([a-z][\w-]*)"', r'id="kcs-\1"', main_html)
     main_html = re.sub(r'href="#([a-z][\w-]*)"', r'href="#kcs-\1"', main_html)
     # images -> absolute base, flat filenames (works for both GitHub Pages and Shopify Files)
-    main_html = re.sub(r'src="images/([^"]+)"', lambda m: 'src="%s/%s"' % (base, m.group(1)), main_html)
+    # covers src="images/..." AND any data-*="images/..." attribute (e.g. the color-swatch
+    # data-img used by the FINAL CTA script) — anything pointing at a local images/ path needs
+    # the same absolute base, or it resolves against the Shopify page URL instead and 404s.
+    main_html = re.sub(r'(\bsrc|\bdata-[\w-]+)="images/([^"]+)"', lambda m: '%s="%s/%s"' % (m.group(1), base, m.group(2)), main_html)
     # FINAL CTA: real cart form instead of the demo button
     main_html = main_html.replace(
         '<button class="btn btn--wide" type="button" id="kcs-addToCartBtn">カートに追加する <span class="ar">→</span></button>',
