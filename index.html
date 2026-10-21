@@ -129,6 +129,7 @@
   .mood-tab[aria-selected="true"]{background:var(--pink);color:#fff}
   .mood-panel{display:none}
   .mood-panel.active{display:block}
+  .mood-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px 12px}
 
   /* 06 WHAT'S IN MY BAG */
   .inbag .ph{aspect-ratio:1/1}
@@ -185,6 +186,8 @@
   /* ===== PC（モバイルの型・余白を1.15倍前後に拡大し、ヒーローは2カラム、カルーセルは列数を増やす） ===== */
   @media (min-width:900px){
     :root{--maxw:1040px;--gutter:40px}
+    .mood-grid{grid-template-columns:repeat(4,1fr);gap:24px}
+    .mood-grid.cols-3{grid-template-columns:repeat(3,1fr)}
     .section{padding:72px 0 56px}
     .h2{font-size:34px;margin-bottom:10px}
     .lead{font-size:18px;margin-bottom:34px}
@@ -354,52 +357,35 @@ Kawaii Chic Shoulderで、
         <button class="mood-tab" role="tab" aria-selected="false" data-mood="others">OTHERS</button>
       </div>
       <div class="mood-panel active" id="mood-sweet">
-        <div class="car" data-carousel>
-          <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
-          <div class="track three">
-            <div class="tile"><div class="ph contain has-img"><img src="images/bag-pink-beige.jpg" alt="PINK BEIGE" loading="lazy"></div><p class="lbl">Pink Beige</p></div>
-            <div class="tile"><div class="ph contain has-img"><img src="images/bag-macaron-pink.jpg" alt="MACARON PINK" loading="lazy"></div><p class="lbl">Macaron Pink</p></div>
-            <div class="tile"><div class="ph contain has-img"><img src="images/bag-sumire.jpg" alt="SUMIRE" loading="lazy"></div><p class="lbl">Sumire</p></div>
-          </div>
-          <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
+        <div class="mood-grid">
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-pink-beige.jpg" alt="PINK BEIGE" loading="lazy"></div><p class="lbl">Pink Beige</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-macaron-pink.jpg" alt="MACARON PINK" loading="lazy"></div><p class="lbl">Macaron Pink</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-sumire.jpg" alt="SUMIRE" loading="lazy"></div><p class="lbl">Sumire</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-carmine.jpg" alt="CARMINE" loading="lazy"></div><p class="lbl">Carmine</p></div>
         </div>
-        <div class="dots"></div>
       </div>
       <div class="mood-panel" id="mood-natural">
-        <div class="car" data-carousel>
-          <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
-          <div class="track three">
-            <div class="tile"><div class="ph contain has-img"><img src="images/bag-sage.jpg" alt="SAGE" loading="lazy"></div><p class="lbl">Sage</p></div>
-            <div class="tile"><div class="ph contain has-img"><img src="images/bag-beige.jpg" alt="BEIGE" loading="lazy"></div><p class="lbl">Beige</p></div>
-            <div class="tile"><div class="ph contain has-img"><img src="images/bag-camel.jpg" alt="CAMEL" loading="lazy"></div><p class="lbl">Camel</p></div>
-          </div>
-          <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
+        <div class="mood-grid">
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-camel.jpg" alt="CAMEL" loading="lazy"></div><p class="lbl">Camel</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-beige.jpg" alt="BEIGE" loading="lazy"></div><p class="lbl">Beige</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-brown.jpg" alt="BROWN" loading="lazy"></div><p class="lbl">Brown</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-mint.jpg" alt="MINT" loading="lazy"></div><p class="lbl">Mint</p></div>
         </div>
-        <div class="dots"></div>
       </div>
       <div class="mood-panel" id="mood-mode">
-        <div class="car" data-carousel>
-          <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
-          <div class="track three">
-            <div class="tile"><div class="ph contain has-img"><img src="images/bag-black.jpg" alt="BLACK" loading="lazy"></div><p class="lbl">Black</p></div>
-            <div class="tile"><div class="ph contain has-img"><img src="images/bag-navy.jpg" alt="NAVY" loading="lazy"></div><p class="lbl">Navy</p></div>
-            <div class="tile"><div class="ph contain has-img"><img src="images/bag-gray.jpg" alt="GRAY" loading="lazy"></div><p class="lbl">Gray</p></div>
-          </div>
-          <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
+        <div class="mood-grid">
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-black.jpg" alt="BLACK" loading="lazy"></div><p class="lbl">Black</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-silver.jpg" alt="SILVER" loading="lazy"></div><p class="lbl">Silver</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-gold.jpg" alt="GOLD" loading="lazy"></div><p class="lbl">Gold</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-evergreen.jpg" alt="EVERGREEN" loading="lazy"></div><p class="lbl">Evergreen</p></div>
         </div>
-        <div class="dots"></div>
       </div>
       <div class="mood-panel" id="mood-others">
-        <div class="car" data-carousel>
-          <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
-          <div class="track three">
-            <div class="tile"><div class="ph contain has-img"><img src="images/bag-mint.jpg" alt="MINT" loading="lazy"></div><p class="lbl">Mint</p></div>
-            <div class="tile"><div class="ph contain has-img"><img src="images/bag-silver.jpg" alt="SILVER" loading="lazy"></div><p class="lbl">Silver</p></div>
-            <div class="tile"><div class="ph contain has-img"><img src="images/bag-wine.jpg" alt="WINE" loading="lazy"></div><p class="lbl">Wine</p></div>
-          </div>
-          <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
+        <div class="mood-grid cols-3">
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-pale-blue.jpg" alt="PALE BLUE" loading="lazy"></div><p class="lbl">Pale Blue</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-metallic-ocean.jpg" alt="METALLIC OCEAN" loading="lazy"></div><p class="lbl">Metallic Ocean</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-metallic-red.jpg" alt="METALLIC RED" loading="lazy"></div><p class="lbl">Metallic Red</p></div>
         </div>
-        <div class="dots"></div>
       </div>
     </div>
   </section>

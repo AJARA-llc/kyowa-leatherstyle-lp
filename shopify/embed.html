@@ -99,6 +99,7 @@ body:has(#kcs-root) [class*="breadcrumb" i]{display:none!important}
 .kcs .mood-tab[aria-selected="true"]{background:var(--pink);color:#fff}
 .kcs .mood-panel{display:none}
 .kcs .mood-panel.active{display:block}
+.kcs .mood-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px 12px}
 .kcs .inbag .ph{aspect-ratio:1/1}
 .kcs .inbag .cap{margin:0;background:var(--panel);text-align:center;font-size:13px;padding:9px 4px}
 .kcs .feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
@@ -132,6 +133,8 @@ body:has(#kcs-root) [class*="breadcrumb" i]{display:none!important}
 .kcs .swatches .more{width:22px;height:22px;border-radius:50%;background:var(--panel);font-size:10px;display:flex;align-items:center;justify-content:center}
 .kcs .cta-info .btn-row{flex-direction:column;margin-top:0}
 @media (min-width:900px){.kcs{--maxw:1040px;--gutter:40px}
+.kcs .mood-grid{grid-template-columns:repeat(4,1fr);gap:24px}
+.kcs .mood-grid.cols-3{grid-template-columns:repeat(3,1fr)}
 .kcs .section{padding:72px 0 56px}
 .kcs .h2{font-size:34px;margin-bottom:10px}
 .kcs .lead{font-size:18px;margin-bottom:34px}
@@ -253,52 +256,35 @@ Kawaii Chic Shoulderで、
         <button class="mood-tab" role="tab" aria-selected="false" data-mood="others">OTHERS</button>
       </div>
       <div class="mood-panel active" id="kcs-mood-sweet">
-        <div class="car" data-carousel>
-          <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
-          <div class="track three">
-            <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/bag-pink-beige.jpg" alt="PINK BEIGE" loading="lazy"></div><p class="lbl">Pink Beige</p></div>
-            <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/bag-macaron-pink.jpg" alt="MACARON PINK" loading="lazy"></div><p class="lbl">Macaron Pink</p></div>
-            <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/bag-sumire.jpg" alt="SUMIRE" loading="lazy"></div><p class="lbl">Sumire</p></div>
-          </div>
-          <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
+        <div class="mood-grid">
+          <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/box-pink-beige.jpg" alt="PINK BEIGE" loading="lazy"></div><p class="lbl">Pink Beige</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/box-macaron-pink.jpg" alt="MACARON PINK" loading="lazy"></div><p class="lbl">Macaron Pink</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/box-sumire.jpg" alt="SUMIRE" loading="lazy"></div><p class="lbl">Sumire</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/box-carmine.jpg" alt="CARMINE" loading="lazy"></div><p class="lbl">Carmine</p></div>
         </div>
-        <div class="dots"></div>
       </div>
       <div class="mood-panel" id="kcs-mood-natural">
-        <div class="car" data-carousel>
-          <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
-          <div class="track three">
-            <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/bag-sage.jpg" alt="SAGE" loading="lazy"></div><p class="lbl">Sage</p></div>
-            <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/bag-beige.jpg" alt="BEIGE" loading="lazy"></div><p class="lbl">Beige</p></div>
-            <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/bag-camel.jpg" alt="CAMEL" loading="lazy"></div><p class="lbl">Camel</p></div>
-          </div>
-          <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
+        <div class="mood-grid">
+          <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/box-camel.jpg" alt="CAMEL" loading="lazy"></div><p class="lbl">Camel</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/box-beige.jpg" alt="BEIGE" loading="lazy"></div><p class="lbl">Beige</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/box-brown.jpg" alt="BROWN" loading="lazy"></div><p class="lbl">Brown</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/box-mint.jpg" alt="MINT" loading="lazy"></div><p class="lbl">Mint</p></div>
         </div>
-        <div class="dots"></div>
       </div>
       <div class="mood-panel" id="kcs-mood-mode">
-        <div class="car" data-carousel>
-          <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
-          <div class="track three">
-            <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/bag-black.jpg" alt="BLACK" loading="lazy"></div><p class="lbl">Black</p></div>
-            <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/bag-navy.jpg" alt="NAVY" loading="lazy"></div><p class="lbl">Navy</p></div>
-            <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/bag-gray.jpg" alt="GRAY" loading="lazy"></div><p class="lbl">Gray</p></div>
-          </div>
-          <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
+        <div class="mood-grid">
+          <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/box-black.jpg" alt="BLACK" loading="lazy"></div><p class="lbl">Black</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/box-silver.jpg" alt="SILVER" loading="lazy"></div><p class="lbl">Silver</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/box-gold.jpg" alt="GOLD" loading="lazy"></div><p class="lbl">Gold</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/box-evergreen.jpg" alt="EVERGREEN" loading="lazy"></div><p class="lbl">Evergreen</p></div>
         </div>
-        <div class="dots"></div>
       </div>
       <div class="mood-panel" id="kcs-mood-others">
-        <div class="car" data-carousel>
-          <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
-          <div class="track three">
-            <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/bag-mint.jpg" alt="MINT" loading="lazy"></div><p class="lbl">Mint</p></div>
-            <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/bag-silver.jpg" alt="SILVER" loading="lazy"></div><p class="lbl">Silver</p></div>
-            <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/bag-wine.jpg" alt="WINE" loading="lazy"></div><p class="lbl">Wine</p></div>
-          </div>
-          <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
+        <div class="mood-grid cols-3">
+          <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/box-pale-blue.jpg" alt="PALE BLUE" loading="lazy"></div><p class="lbl">Pale Blue</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/box-metallic-ocean.jpg" alt="METALLIC OCEAN" loading="lazy"></div><p class="lbl">Metallic Ocean</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/box-metallic-red.jpg" alt="METALLIC RED" loading="lazy"></div><p class="lbl">Metallic Red</p></div>
         </div>
-        <div class="dots"></div>
       </div>
     </div>
   </section>
