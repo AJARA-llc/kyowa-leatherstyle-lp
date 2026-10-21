@@ -2,7 +2,11 @@
 
 `embed.html` is a single self-contained block (HTML + CSS + JS). Everything is scoped
 under the `.kcs` wrapper, ids are prefixed `kcs-`, so it cannot affect other pages or
-the theme. The theme's own header and footer wrap it.
+the theme. The block hides the theme's header/footer chrome on the page it's embedded
+in (CSS `:has(#kcs-root)`, covers the common Dawn/OS2.0 wrapper shapes) so the LP
+renders full-bleed. If your theme's header/footer still show after pasting, send the
+page's view-source (the element wrapping the nav/footer) and the selector list in
+`scripts/build_embed.py` gets extended for your theme.
 
 ## Steps (Dawn or any OS 2.0 theme)
 

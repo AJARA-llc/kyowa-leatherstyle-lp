@@ -12,6 +12,21 @@
 .kcs p,.kcs h1,.kcs h2,.kcs h3,.kcs ul{margin:0;padding:0;color:inherit;font-family:inherit;letter-spacing:normal;text-transform:none;text-shadow:none}
 .kcs ul{list-style:none}
 .kcs form{margin:0}
+/* Hide the theme's own header/footer chrome on pages that embed this block,
+   so the LP is full-bleed like the wireframe. Scoped via :has() so it never
+   touches any other page. Covers the common Dawn/OS2.0 wrapper shapes; if
+   your theme's header/footer still show, send the page's view-source (the
+   element wrapping the nav/footer) and this selector list gets extended. */
+body:has(#kcs-root) .shopify-section-group-header-group,
+body:has(#kcs-root) #shopify-section-group-header-group,
+body:has(#kcs-root) .shopify-section-group-footer-group,
+body:has(#kcs-root) #shopify-section-group-footer-group,
+body:has(#kcs-root) > header,
+body:has(#kcs-root) > footer,
+body:has(#kcs-root) header.header,
+body:has(#kcs-root) footer.footer,
+body:has(#kcs-root) .announcement-bar,
+body:has(#kcs-root) [class*="breadcrumb" i]{display:none!important}
 .kcs{
     --ink:#1f1d1b; --sub:#6f6a64; --paper:#ffffff; --panel:#f4f3f1; --line:#e6e3df;
     --pink:#cf9089; --pink-deep:#b97a72;
@@ -200,9 +215,9 @@ Kawaii Chic Shoulderで、
       <div class="car" data-carousel>
         <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
         <div class="track three">
-          <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/bag-pink-beige.jpg" alt="PINK BEIGE" loading="lazy"></div><p class="lbl">Pink Beige</p></div>
-          <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/bag-camel.jpg" alt="CAMEL" loading="lazy"></div><p class="lbl">Camel</p></div>
-          <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/bag-mint.jpg" alt="MINT" loading="lazy"></div><p class="lbl">Mint</p></div>
+          <div class="tile"><div class="ph has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/snap-pale-blue.jpg" alt="PALE BLUE" loading="lazy"></div><p class="lbl">Pale Blue</p></div>
+          <div class="tile"><div class="ph has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/snap-gold.jpg" alt="GOLD" loading="lazy"></div><p class="lbl">Gold</p></div>
+          <div class="tile"><div class="ph has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/snap-carmine.jpg" alt="CARMINE" loading="lazy"></div><p class="lbl">Carmine</p></div>
           <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/bag-macaron-pink.jpg" alt="MACARON PINK" loading="lazy"></div><p class="lbl">Macaron Pink</p></div>
           <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/bag-sumire.jpg" alt="SUMIRE" loading="lazy"></div><p class="lbl">Sumire</p></div>
           <div class="tile"><div class="ph contain has-img"><img src="https://ajara-llc.github.io/kyowa-leatherstyle-lp/images/bag-sage.jpg" alt="SAGE" loading="lazy"></div><p class="lbl">Sage</p></div>
@@ -210,7 +225,7 @@ Kawaii Chic Shoulderで、
         <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
       </div>
       <div class="dots"></div>
-      <div class="btn-row"><a href="#kcs-finalcta" class="btn btn--line">すべてのカラーを見る <span class="ar">→</span></a></div>
+      <div class="btn-row"><a href="https://hideo-wakamatsu.com/products/clarino-bag-mini-shoulder" class="btn btn--line">すべてのカラーを見る <span class="ar">→</span></a></div>
     </div>
   </section>
 

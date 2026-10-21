@@ -118,6 +118,21 @@ def main():
 .kcs p,.kcs h1,.kcs h2,.kcs h3,.kcs ul{{margin:0;padding:0;color:inherit;font-family:inherit;letter-spacing:normal;text-transform:none;text-shadow:none}}
 .kcs ul{{list-style:none}}
 .kcs form{{margin:0}}
+/* Hide the theme's own header/footer chrome on pages that embed this block,
+   so the LP is full-bleed like the wireframe. Scoped via :has() so it never
+   touches any other page. Covers the common Dawn/OS2.0 wrapper shapes; if
+   your theme's header/footer still show, send the page's view-source (the
+   element wrapping the nav/footer) and this selector list gets extended. */
+body:has(#kcs-root) .shopify-section-group-header-group,
+body:has(#kcs-root) #shopify-section-group-header-group,
+body:has(#kcs-root) .shopify-section-group-footer-group,
+body:has(#kcs-root) #shopify-section-group-footer-group,
+body:has(#kcs-root) > header,
+body:has(#kcs-root) > footer,
+body:has(#kcs-root) header.header,
+body:has(#kcs-root) footer.footer,
+body:has(#kcs-root) .announcement-bar,
+body:has(#kcs-root) [class*="breadcrumb" i]{{display:none!important}}
 {scope_css(css)}
 </style>
 {main_html.strip()}
