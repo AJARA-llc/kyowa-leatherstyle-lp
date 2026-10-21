@@ -101,8 +101,17 @@ def main():
     # JS: drop the header/drawer part and the demo alert; scope queries to the wrapper; add the cart wiring
     script = script.split("// カルーセル", 1)[1].split("\n", 1)[1]   # drop the rest of that comment line
     script = script.split("// カートに追加する", 1)[0]
-    script = script.replace("document.querySelectorAll", "root.querySelectorAll").replace("document.getElementById('mood-'", "root.querySelector('#kcs-mood-'")
-    script = script.replace("var panel = root.querySelector('#kcs-mood-' + tab.getAttribute('data-mood'));", "var panel = root.querySelector('#kcs-mood-' + tab.getAttribute('data-mood'));")
+    # getElementById has no equivalent on a scoped element, so route it through root.querySelector('#id')
+    # instead — handles both a literal id ("getElementById('foo')") and a dynamic prefix built via string
+    # concatenation ("getElementById('mood-' + x)"). The closing quote is kept out of the match (only the
+    # opening one is consumed) so it survives into the replacement untouched.
+    script = re.sub(r"document\.getElementById\('([a-z][\w-]*)'", r"root.querySelector('#kcs-\1'", script)
+    script = script.replace("document.querySelectorAll", "root.querySelectorAll").replace("document.querySelector(", "root.querySelector(")
+    # Any remaining '#id' or "#id" selector literal — static, a dynamic prefix fragment like '#mood-', or
+    # followed by a descendant combinator like '#ctaSwatches .swatch' — needs the same kcs- prefix the ids
+    # themselves got above, or the selector matches nothing in the embed. The lookahead skips strings the
+    # getElementById rewrite above already prefixed, so this never double-prefixes.
+    script = re.sub(r"(['\"])#(?!kcs-)([a-z][\w-]*)", r"\1#kcs-\2", script)
 
     embed = f"""<!-- Kawaii Chic Shoulder LP — self-contained embed. Paste the whole block into a Shopify page
      (Custom Liquid section or the page HTML editor). Everything is scoped under .kcs; nothing here
