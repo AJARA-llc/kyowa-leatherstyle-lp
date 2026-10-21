@@ -10,9 +10,10 @@ Source of truth stays index.html. This script:
 Usage: build_embed.py [--base URL] [--product-url PATH]
   --base         where the 26 images live. Default: the GitHub Pages images folder.
                  For Shopify Files use e.g. https://cdn.shopify.com/s/files/1/XXXX/XXXX/files
-  --product-url  product page path used by "商品詳細を見る" (default: /products/kawaii-chic-shoulder)
+  --product-url  product page path used by "商品詳細を見る" (default: /products/clarino-bag-mini-shoulder,
+                 the real handle on hideo-wakamatsu.com — confirmed via the product .json endpoint)
 """
-import re, sys
+import json, re, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -21,6 +22,26 @@ OUT = ROOT / "shopify" / "embed.html"
 
 DEFAULT_BASE = "https://ajara-llc.github.io/kyowa-leatherstyle-lp/images"
 DROP_SELECTOR_PREFIXES = (".nav", ".drawer", ".icon-btn", ".brand", "footer", "html", "body", "*", "img", "a", "button", "p", "img{")
+
+# Real variant ids from https://hideo-wakamatsu.com/products/clarino-bag-mini-shoulder.json
+# (fetched 2026-10-21). Keys match the swatch data-name values in index.html exactly.
+KCS_VARIANTS = {
+    "Black": 45396232503450,
+    "Camel": 45396234567834,
+    "Carmine": 45396234600602,
+    "Mint": 45396234633370,
+    "Pink Beige": 45396234666138,
+    "Evergreen": 47947821449370,
+    "Sumire": 47947821482138,
+    "Brown": 47947821514906,
+    "Silver": 47947821547674,
+    "Gold": 47947821580442,
+    "Beige": 47947882332314,
+    "Pale Blue": 47947882365082,
+    "Macaron Pink": 47947821613210,
+    "Metallic Ocean": 47947821645978,
+    "Metallic Red": 47947821678746,
+}
 
 
 def scope_css(css: str) -> str:
@@ -71,11 +92,12 @@ def scope_css(css: str) -> str:
 def main():
     args = sys.argv[1:]
     base = DEFAULT_BASE
-    product_url = "/products/kawaii-chic-shoulder"
+    product_url = "/products/clarino-bag-mini-shoulder"
     if "--base" in args:
         base = args[args.index("--base") + 1].rstrip("/")
     if "--product-url" in args:
         product_url = args[args.index("--product-url") + 1]
+    variants_json = json.dumps(KCS_VARIANTS, ensure_ascii=False, indent=4)
 
     html = SRC.read_text(encoding="utf-8")
     css = re.search(r"<style>(.*?)</style>", html, re.S).group(1)
@@ -155,11 +177,9 @@ body:has(#kcs-root) [class*="breadcrumb" i]{{display:none!important}}
 {script.strip()}
 
   // カート追加: 色名(スウォッチの data-name と同じ表記) -> バリアントID。
-  // Shopify管理画面の「商品 > バリエーション」で各色を開き、URLの variant= の数字をここに入れる。
+  // hideo-wakamatsu.com の商品JSON(.json エンドポイント)から取得した実IDを使用。
   // その色がまだ空欄なら、カートに追加する代わりに商品ページへ移動する（フォールバック）。
-  var KCS_VARIANTS = {{
-    // "Black": 12345678901234,
-  }};
+  var KCS_VARIANTS = {variants_json};
   var KCS_PRODUCT_URL = "{product_url}";
   var form = root.querySelector('#kcs-cart-form');
   if(form){{

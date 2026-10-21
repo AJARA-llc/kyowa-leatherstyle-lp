@@ -527,12 +527,26 @@ root.querySelectorAll('[data-carousel]').forEach(function(car){
   });
 
   // カート追加: 色名(スウォッチの data-name と同じ表記) -> バリアントID。
-  // Shopify管理画面の「商品 > バリエーション」で各色を開き、URLの variant= の数字をここに入れる。
+  // hideo-wakamatsu.com の商品JSON(.json エンドポイント)から取得した実IDを使用。
   // その色がまだ空欄なら、カートに追加する代わりに商品ページへ移動する（フォールバック）。
   var KCS_VARIANTS = {
-    // "Black": 12345678901234,
-  };
-  var KCS_PRODUCT_URL = "/products/kawaii-chic-shoulder";
+    "Black": 45396232503450,
+    "Camel": 45396234567834,
+    "Carmine": 45396234600602,
+    "Mint": 45396234633370,
+    "Pink Beige": 45396234666138,
+    "Evergreen": 47947821449370,
+    "Sumire": 47947821482138,
+    "Brown": 47947821514906,
+    "Silver": 47947821547674,
+    "Gold": 47947821580442,
+    "Beige": 47947882332314,
+    "Pale Blue": 47947882365082,
+    "Macaron Pink": 47947821613210,
+    "Metallic Ocean": 47947821645978,
+    "Metallic Red": 47947821678746
+};
+  var KCS_PRODUCT_URL = "/products/clarino-bag-mini-shoulder";
   var form = root.querySelector('#kcs-cart-form');
   if(form){
     var idInput = form.querySelector('[data-kcs-variant]');
