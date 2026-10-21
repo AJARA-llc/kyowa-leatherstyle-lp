@@ -118,7 +118,7 @@
   .tile .lbl{margin:10px 0 0;text-align:center;font-size:11px;letter-spacing:.04em;text-transform:uppercase}
 
   /* 04 STYLE SNAP */
-  .snap .ph{aspect-ratio:5/4}
+  .snap .ph{aspect-ratio:3/4}
   .snap-cap{margin:14px 0 0;text-align:center;font-size:13px;line-height:1.5}
   .snap-cap b{display:block;font-weight:700;letter-spacing:.04em}
 
@@ -212,7 +212,6 @@
     .car{padding:0 36px}
     .track{gap:20px}
     .track.three>*{flex-basis:calc((100% - 80px)/5)}
-    #colorday .track.three>*{flex-basis:calc((100% - 40px)/3)}
     .track:not(.three):not(.two)>*{flex-basis:calc((100% - 20px)/2)}
     .track.two>*{flex-basis:calc((100% - 20px)/2)}
     .arrow{width:36px}
@@ -317,11 +316,28 @@ Kawaii Chic Shoulderで、
     <div class="wrap">
       <h2 class="h2">Color Your Day.</h2>
       <p class="lead">気分も、コーデも、色で変わる。</p>
-      <div class="track three">
-        <div class="tile"><div class="ph has-img"><img src="images/snap-mint-real.jpg" alt="MINT" loading="lazy"></div><p class="lbl">Mint</p></div>
-        <div class="tile"><div class="ph has-img"><img src="images/snap-gold.jpg" alt="GOLD" loading="lazy"></div><p class="lbl">Gold</p></div>
-        <div class="tile"><div class="ph has-img"><img src="images/snap-carmine.jpg" alt="CARMINE" loading="lazy"></div><p class="lbl">Carmine</p></div>
+      <div class="car" data-carousel>
+        <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
+        <div class="track three">
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-carmine.jpg" alt="CARMINE" loading="lazy"></div><p class="lbl">Carmine</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-gold.jpg" alt="GOLD" loading="lazy"></div><p class="lbl">Gold</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-mint.jpg" alt="MINT" loading="lazy"></div><p class="lbl">Mint</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-pink-beige.jpg" alt="PINK BEIGE" loading="lazy"></div><p class="lbl">Pink Beige</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-macaron-pink.jpg" alt="MACARON PINK" loading="lazy"></div><p class="lbl">Macaron Pink</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-sumire.jpg" alt="SUMIRE" loading="lazy"></div><p class="lbl">Sumire</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-camel.jpg" alt="CAMEL" loading="lazy"></div><p class="lbl">Camel</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-beige.jpg" alt="BEIGE" loading="lazy"></div><p class="lbl">Beige</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-brown.jpg" alt="BROWN" loading="lazy"></div><p class="lbl">Brown</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-black.jpg" alt="BLACK" loading="lazy"></div><p class="lbl">Black</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-silver.jpg" alt="SILVER" loading="lazy"></div><p class="lbl">Silver</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-evergreen.jpg" alt="EVERGREEN" loading="lazy"></div><p class="lbl">Evergreen</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-pale-blue.jpg" alt="PALE BLUE" loading="lazy"></div><p class="lbl">Pale Blue</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-metallic-ocean.jpg" alt="METALLIC OCEAN" loading="lazy"></div><p class="lbl">Metallic Ocean</p></div>
+          <div class="tile"><div class="ph contain has-img"><img src="images/box-metallic-red.jpg" alt="METALLIC RED" loading="lazy"></div><p class="lbl">Metallic Red</p></div>
+        </div>
+        <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
       </div>
+      <div class="dots"></div>
       <div class="btn-row"><a href="https://hideo-wakamatsu.com/products/clarino-bag-mini-shoulder" class="btn btn--line">すべてのカラーを見る <span class="ar">→</span></a></div>
     </div>
   </section>
@@ -334,10 +350,9 @@ Kawaii Chic Shoulderで、
       <div class="car" data-carousel>
         <button class="arrow prev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 6 9 12 15 18"/></svg></button>
         <div class="track">
-          <div class="snap"><div class="ph has-img"><img src="images/snap-1.jpg" alt="" loading="lazy"></div><p class="snap-cap"><b>PINK BEIGE</b>Soft &amp; Feminine</p></div>
-          <div class="snap"><div class="ph has-img"><img src="images/snap-2.jpg" alt="" loading="lazy"></div><p class="snap-cap"><b>CAMEL</b>Casual Mode</p></div>
-          <div class="snap"><div class="ph has-img"><img src="images/snap-3.jpg" alt="" loading="lazy"></div><p class="snap-cap"><b>MINT</b>Fresh Natural</p></div>
-          <div class="snap"><div class="ph has-img"><img src="images/snap-4.jpg" alt="" loading="lazy"></div><p class="snap-cap"><b>SUMIRE</b>Elegant Mood</p></div>
+          <div class="snap"><div class="ph has-img"><img src="images/snap-carmine.jpg" alt="" loading="lazy"></div><p class="snap-cap"><b>CARMINE</b>Bold Statement</p></div>
+          <div class="snap"><div class="ph has-img"><img src="images/snap-gold.jpg" alt="" loading="lazy"></div><p class="snap-cap"><b>GOLD</b>Luxe Shine</p></div>
+          <div class="snap"><div class="ph has-img"><img src="images/snap-mint-real.jpg" alt="" loading="lazy"></div><p class="snap-cap"><b>MINT</b>Fresh Natural</p></div>
         </div>
         <button class="arrow next" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 6 15 12 9 18"/></svg></button>
       </div>
